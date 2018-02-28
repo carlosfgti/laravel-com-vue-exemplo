@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\v1;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
+use App\Http\Requests\StoreUpdateProductValidate;
 
 class ProductController extends Controller
 {
@@ -41,10 +42,10 @@ class ProductController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\Request $request
+     * @param  \App\Http\Requests\StoreUpdateProductValidate $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreUpdateProductValidate $request)
     {
         $data = $request->all();
 
@@ -97,11 +98,11 @@ class ProductController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\Request $request
+     * @param  \App\Http\Requests\StoreUpdateProductValidate $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreUpdateProductValidate $request, $id)
     {
         $data = $request->all();
 
