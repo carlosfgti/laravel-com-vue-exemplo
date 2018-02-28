@@ -1,5 +1,8 @@
 <?php
 
+// Rotas de autenticação
+$this->post('auth', 'Auth\ApiLoginController@authenticate');
+
 // Routes prefix, version API
 $this->group(['prefix' => 'v1', 'namespace' => 'Api\V1'], function() {
 
