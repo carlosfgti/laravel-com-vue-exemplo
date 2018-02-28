@@ -13,4 +13,19 @@ export default {
                     .catch(error => console.log(error))
                     .finally(() => context.commit('LOADING', false))
     },
+
+
+    addProduct (context, product) {
+        context.commit('LOADING', true)
+
+        return new Promise((resolve, reject) => {
+            axios.post(`${URL_BASE}${RESOURCE}`, product)
+                    .then(response => resolve())
+                    .catch(error => {
+                        console.log(error)
+                        reject(error.response.data.errors)
+                    })
+                    .finally(() => context.commit('LOADING', false))
+        })
+    },
 }

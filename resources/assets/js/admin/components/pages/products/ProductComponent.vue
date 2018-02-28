@@ -4,7 +4,9 @@
 
         <div class="row options">
             <div class="col">
-                #add
+                <router-link :to="{name: 'product.add'}" class="btn btn-success">
+                    Adicionar
+                </router-link>
             </div>
 
             <div class="col">
