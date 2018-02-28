@@ -85,10 +85,9 @@ export default {
                             this.$router.push({name: 'products'})
                         })
                         .catch(errors => {
-                            console.log(errors)
                             this.$snotify.error('Algo errado...', 'Erro')
 
-                            // this.errors = errors.hasOwnProperty('errors') ? errors.errors : errors
+                            this.errors = errors.hasOwnProperty('errors') ? errors.errors : errors
                         })
         }
     }

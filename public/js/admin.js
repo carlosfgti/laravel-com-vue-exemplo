@@ -37565,10 +37565,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
                 _this2.$router.push({ name: 'products' });
             }).catch(function (errors) {
-                console.log(errors);
                 _this2.$snotify.error('Algo errado...', 'Erro');
 
-                // this.errors = errors.hasOwnProperty('errors') ? errors.errors : errors
+                _this2.errors = errors.hasOwnProperty('errors') ? errors.errors : errors;
             });
         }
     }
