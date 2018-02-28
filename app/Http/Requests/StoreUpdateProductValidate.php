@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use App\Rules\FileCustonValidation;
 
 class StoreUpdateProductValidate extends FormRequest
 {
@@ -26,6 +27,10 @@ class StoreUpdateProductValidate extends FormRequest
         return [
             'name'          => "required|unique:products,name,{$this->id},id",
             'description'   => 'max:255',
+            'image'         => [
+                // 'required',
+                new FileCustonValidation(['png', 'jpeg', 'jpg'], $this->image)
+            ]
         ];
     }
 }
