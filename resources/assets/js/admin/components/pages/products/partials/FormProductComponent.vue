@@ -75,12 +75,7 @@ export default {
 
             return this.$store.dispatch(action, this.product)
                         .then(() => {
-                            this.$snotify.success('Sucesso ao salvar o registro', {
-                                timeout: 4000,
-                                showProgressBar: true,
-                                closeOnClick: true,
-                                pauseOnHover: true
-                            })
+                            this.$snotify.success('Sucesso ao salvar o registro')
 
                             this.$router.push({name: 'products'})
                         })

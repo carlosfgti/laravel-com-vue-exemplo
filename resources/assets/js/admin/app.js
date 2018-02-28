@@ -6,7 +6,7 @@ import Snotify from 'vue-snotify'
 import router from './routes/routers'
 import store from './vuex/store'
 
-Vue.use(Snotify)
+Vue.use(Snotify, {toast: {showProgressBar: false}})
 
 /**
  * Cria os componentes

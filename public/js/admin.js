@@ -1159,7 +1159,7 @@ window.Vue = __webpack_require__(36);
 
 
 
-Vue.use(__WEBPACK_IMPORTED_MODULE_0_vue_snotify__["a" /* default */]);
+Vue.use(__WEBPACK_IMPORTED_MODULE_0_vue_snotify__["a" /* default */], { toast: { showProgressBar: false } });
 
 /**
  * Cria os componentes
@@ -37556,12 +37556,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var action = this.update ? 'editProduct' : 'addProduct';
 
             return this.$store.dispatch(action, this.product).then(function () {
-                _this2.$snotify.success('Sucesso ao salvar o registro', {
-                    timeout: 4000,
-                    showProgressBar: true,
-                    closeOnClick: true,
-                    pauseOnHover: true
-                });
+                _this2.$snotify.success('Sucesso ao salvar o registro');
 
                 _this2.$router.push({ name: 'products' });
             }).catch(function (errors) {
