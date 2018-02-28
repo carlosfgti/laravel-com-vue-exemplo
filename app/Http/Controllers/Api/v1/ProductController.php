@@ -48,6 +48,30 @@ class ProductController extends Controller
     {
         $data = $request->all();
 
+        // Verifica se informou a imagem para upload
+        if ($request->has('image')) {
+            $name = kebab_case($request->name);
+    
+            // Recupera a extensão do arquivo
+            $image = $request->get('image');
+            $extension = explode('/', explode(':', substr($image, 0, strpos($image, ';')))[1])[1];
+
+            // Define finalmente o nome + extensão
+            $nameFile = "{$name}.{$extension}";
+
+            // Atualiza no array $data para atualizar no banco
+            $data['image'] = $nameFile;
+
+            // Faz o upload:
+            //$upload = $request->image->storeAs('products', $nameFile);
+            $upload = \Image::make($image)->save(public_path('storage/products/').$nameFile);
+            // Se tiver funcionado o arquivo foi armazenado em storage/app/public/products/nomedinamicoarquivo.extensao
+
+            // Verifica se NÃO deu certo o upload
+            if ( !$upload )
+                return response()->json(['error' => 'fail_upload'], 500);
+        }
+
         if ( !$product = $this->product->create($data) )
             return response()->json(['error' => 'error_insert'], 500);
         
@@ -83,6 +107,25 @@ class ProductController extends Controller
 
         if ( !$product = $this->product->find($id) )
            return response()->json(['error' => 'product_not_found'], 404);
+
+        // Faz o upload da nova imagem, caso informado
+        if ($request->has('image') && $product->image != $request->image) {
+            // Recupera a extensão do arquivo
+            $image = $request->get('image');
+            $extension = explode('/', explode(':', substr($image, 0, strpos($image, ';')))[1])[1];
+
+            // Define finalmente o nome
+            $nameFile = "{$task->name}.{$extension}";
+
+            $data['image'] = $nameFile;
+
+            // Faz o upload: //$upload = $request->image->storeAs('products', $nameFile);
+            $upload = \Image::make($image)->save(public_path('storage/products/').$nameFile);
+
+            // Verifica se NÃO deu certo o upload
+            if ( !$upload )
+                return response()->json(['error' => 'fail_upload'], 500);
+        }
         
         if ( !$product->update($data) )
             return response()->json(['error' => 'product_not_update'], 500);
