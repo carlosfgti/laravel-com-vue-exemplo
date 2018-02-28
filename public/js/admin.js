@@ -29822,6 +29822,9 @@ module.exports = Vue$3;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_router__ = __webpack_require__(40);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_pages_home_HomeComponent__ = __webpack_require__(41);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_pages_home_HomeComponent___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__components_pages_home_HomeComponent__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_pages_products_ProductComponent__ = __webpack_require__(55);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_pages_products_ProductComponent___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__components_pages_products_ProductComponent__);
+
 
 
 
@@ -29829,10 +29832,9 @@ module.exports = Vue$3;
 
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]);
 
-var routes = [{ path: '/', component: __WEBPACK_IMPORTED_MODULE_2__components_pages_home_HomeComponent___default.a, name: 'home' }];
+var routes = [{ path: '/', component: __WEBPACK_IMPORTED_MODULE_2__components_pages_home_HomeComponent___default.a, name: 'home' }, { path: '/products', component: __WEBPACK_IMPORTED_MODULE_3__components_pages_products_ProductComponent___default.a, name: 'products' }];
 
 var router = new __WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]({
-    history: true,
     routes: routes
 });
 
@@ -32622,7 +32624,7 @@ exports = module.exports = __webpack_require__(46)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -32986,6 +32988,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({});
 
@@ -33003,9 +33006,17 @@ var render = function() {
       _c(
         "ul",
         [
-          _c("router-link", { staticClass: "nav-link", attrs: { to: "/" } }, [
-            _vm._v("Home")
-          ])
+          _c(
+            "router-link",
+            { staticClass: "nav-link", attrs: { to: { name: "home" } } },
+            [_vm._v("Home")]
+          ),
+          _vm._v(" "),
+          _c(
+            "router-link",
+            { staticClass: "nav-link", attrs: { to: { name: "products" } } },
+            [_vm._v("Produtos")]
+          )
         ],
         1
       ),
@@ -33030,6 +33041,76 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 52 */,
+/* 53 */,
+/* 54 */,
+/* 55 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(10)
+/* script */
+var __vue_script__ = null
+/* template */
+var __vue_template__ = __webpack_require__(56)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\admin\\components\\pages\\products\\ProductComponent.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-181eaa34", Component.options)
+  } else {
+    hotAPI.reload("data-v-181eaa34", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 56 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [_vm._v("\n    #listagem dos produtos\n")])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-181eaa34", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);
