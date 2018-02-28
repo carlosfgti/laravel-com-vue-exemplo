@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <h1>Produtos Cadastrados</h1>
+        <h1>Produtos <span v-if="products.total > 0">({{ products.total }})</span></h1>
 
         <div class="row options">
             <div class="col">
@@ -10,7 +10,11 @@
             </div>
 
             <div class="col">
-                #search
+                <search @search="searchProduct"></search>
+
+                <div v-if="search">
+                    Resultados para a pesquisa: {{ search }}
+                </div>
             </div>
         </div>
 
@@ -49,6 +53,8 @@
 </template>
 
 <script>
+import SearchProductComponent from './partials/SearchProductComponent'
+
 export default {
     name: 'product-component',
     created () {
@@ -56,6 +62,7 @@ export default {
     },
     data () {
         return {
+            search: null,
         }
     },
     computed: {
@@ -65,13 +72,22 @@ export default {
       params () {
           return {
               page: this.products.current_page,
+              filter: this.search,
           }
       }
     },
     methods: {
         loadProducts (page) {
             this.$store.dispatch('loadProducts', {...this.params, page})
+        },
+        searchProduct (search) {
+            this.search = search
+
+            this.loadProducts(1)
         }
+    },
+    components: {
+        search: SearchProductComponent,
     }
 }
 </script>
@@ -79,4 +95,5 @@ export default {
 
 <style scoped>
 .img-list{max-width: 50px;}
+.options{margin: 20px 0;}
 </style>
