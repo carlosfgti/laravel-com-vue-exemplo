@@ -26,7 +26,7 @@
                 </td>
                 <td v-text="product.name"></td>
                 <td>
-                    <a href="#" class="btn btn-danger">Editar</a>
+                    <a href="#" class="btn btn-primary">Editar</a>
                     <a href="#" class="btn btn-danger">Deletar</a>
                 </td>
             </tr>

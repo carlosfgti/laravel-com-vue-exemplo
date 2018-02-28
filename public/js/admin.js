@@ -34558,7 +34558,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("td", [
-      _c("a", { staticClass: "btn btn-danger", attrs: { href: "#" } }, [
+      _c("a", { staticClass: "btn btn-primary", attrs: { href: "#" } }, [
         _vm._v("Editar")
       ]),
       _vm._v(" "),
