@@ -116,7 +116,7 @@ class ProductController extends Controller
             $extension = explode('/', explode(':', substr($image, 0, strpos($image, ';')))[1])[1];
 
             // Define finalmente o nome
-            $nameFile = "{$task->name}.{$extension}";
+            $nameFile = "{$product->name}.{$extension}";
 
             $data['image'] = $nameFile;
 

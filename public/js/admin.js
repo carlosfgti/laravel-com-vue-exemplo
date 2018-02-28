@@ -29836,6 +29836,9 @@ module.exports = Vue$3;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_pages_auth_LoginComponent___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__components_pages_auth_LoginComponent__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_pages_products_ProductAddComponent__ = __webpack_require__(81);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_pages_products_ProductAddComponent___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__components_pages_products_ProductAddComponent__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_pages_products_ProductEditComponent__ = __webpack_require__(89);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_pages_products_ProductEditComponent___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__components_pages_products_ProductEditComponent__);
+
 
 
 
@@ -29846,7 +29849,7 @@ module.exports = Vue$3;
 
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]);
 
-var routes = [{ path: '/', component: __WEBPACK_IMPORTED_MODULE_2__components_pages_home_HomeComponent___default.a, name: 'home' }, { path: '/login', component: __WEBPACK_IMPORTED_MODULE_4__components_pages_auth_LoginComponent___default.a, name: 'auth' }, { path: '/products', component: __WEBPACK_IMPORTED_MODULE_3__components_pages_products_ProductComponent___default.a, name: 'products' }, { path: '/product/add', component: __WEBPACK_IMPORTED_MODULE_5__components_pages_products_ProductAddComponent___default.a, name: 'product.add' }];
+var routes = [{ path: '/', component: __WEBPACK_IMPORTED_MODULE_2__components_pages_home_HomeComponent___default.a, name: 'home' }, { path: '/login', component: __WEBPACK_IMPORTED_MODULE_4__components_pages_auth_LoginComponent___default.a, name: 'auth' }, { path: '/products', component: __WEBPACK_IMPORTED_MODULE_3__components_pages_products_ProductComponent___default.a, name: 'products' }, { path: '/product/add', component: __WEBPACK_IMPORTED_MODULE_5__components_pages_products_ProductAddComponent___default.a, name: 'product.add' }, { path: '/product/:id/edit', component: __WEBPACK_IMPORTED_MODULE_6__components_pages_products_ProductEditComponent___default.a, name: 'product.edit', props: true }];
 
 var router = new __WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]({
     routes: routes
@@ -34109,7 +34112,7 @@ var index_esm = {
 
 
 
-var RESOURCE = 'products';
+var RESOURCE = 'products/';
 
 /* harmony default export */ __webpack_exports__["a"] = ({
     loadProducts: function loadProducts(context) {
@@ -34124,6 +34127,19 @@ var RESOURCE = 'products';
             return context.commit('LOADING', false);
         });
     },
+    loadProduct: function loadProduct(context, id) {
+        context.commit('LOADING', true);
+
+        return new Promise(function (resolve, reject) {
+            __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('' + __WEBPACK_IMPORTED_MODULE_1__configs_configs__["a" /* URL_BASE */] + RESOURCE + id).then(function (response) {
+                return resolve(response.data);
+            }).catch(function (error) {
+                return reject(error);
+            }).finally(function () {
+                return context.commit('LOADING', false);
+            });
+        });
+    },
     addProduct: function addProduct(context, product) {
         context.commit('LOADING', true);
 
@@ -34133,6 +34149,19 @@ var RESOURCE = 'products';
             }).catch(function (error) {
                 console.log(error);
                 reject(error.response.data.errors);
+            }).finally(function () {
+                return context.commit('LOADING', false);
+            });
+        });
+    },
+    editProduct: function editProduct(context, product) {
+        context.commit('LOADING', true);
+
+        return new Promise(function (resolve, reject) {
+            __WEBPACK_IMPORTED_MODULE_0_axios___default.a.put('' + __WEBPACK_IMPORTED_MODULE_1__configs_configs__["a" /* URL_BASE */] + RESOURCE + product.id, product).then(function (response) {
+                return resolve();
+            }).catch(function (error) {
+                return reject(error.response.data);
             }).finally(function () {
                 return context.commit('LOADING', false);
             });
@@ -34496,6 +34525,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: 'product-component',
@@ -34570,7 +34601,28 @@ var render = function() {
             _vm._v(" "),
             _c("td", { domProps: { textContent: _vm._s(product.name) } }),
             _vm._v(" "),
-            _vm._m(1, true)
+            _c(
+              "td",
+              [
+                _c(
+                  "router-link",
+                  {
+                    staticClass: "btn btn-success",
+                    attrs: {
+                      to: { name: "product.edit", params: { id: product.id } }
+                    }
+                  },
+                  [_vm._v("\n                    Editar\n                ")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "a",
+                  { staticClass: "btn btn-danger", attrs: { href: "#" } },
+                  [_vm._v("Deletar")]
+                )
+              ],
+              1
+            )
           ])
         })
       ],
@@ -34589,20 +34641,6 @@ var staticRenderFns = [
       _c("th", [_vm._v("Nome")]),
       _vm._v(" "),
       _c("th", { attrs: { width: "200" } }, [_vm._v("Ações")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("td", [
-      _c("a", { staticClass: "btn btn-primary", attrs: { href: "#" } }, [
-        _vm._v("Editar")
-      ]),
-      _vm._v(" "),
-      _c("a", { staticClass: "btn btn-danger", attrs: { href: "#" } }, [
-        _vm._v("Deletar")
-      ])
     ])
   }
 ]
@@ -37691,6 +37729,132 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-72475e06", module.exports)
+  }
+}
+
+/***/ }),
+/* 89 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(10)
+/* script */
+var __vue_script__ = __webpack_require__(90)
+/* template */
+var __vue_template__ = __webpack_require__(91)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\admin\\components\\pages\\products\\ProductEditComponent.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-653764ca", Component.options)
+  } else {
+    hotAPI.reload("data-v-653764ca", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 90 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__partials_FormProductComponent__ = __webpack_require__(83);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__partials_FormProductComponent___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__partials_FormProductComponent__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: {
+        id: {
+            require: true
+        }
+    },
+    created: function created() {
+        var _this = this;
+
+        this.$store.dispatch('loadProduct', this.id).then(function (response) {
+            return _this.product = response;
+        }).catch(function (error) {
+            _this.$snotify.error('Erro ao carregar produto', 'Erro');
+        });
+    },
+    data: function data() {
+        return {
+            product: {}
+        };
+    },
+
+    components: {
+        FormProductComponent: __WEBPACK_IMPORTED_MODULE_0__partials_FormProductComponent___default.a
+    }
+});
+
+/***/ }),
+/* 91 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "container" },
+    [
+      _c("h1", [_vm._v("Editar Tarefa")]),
+      _vm._v(" "),
+      _c("form-product-component", {
+        attrs: { product: _vm.product, update: true }
+      })
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-653764ca", module.exports)
   }
 }
 

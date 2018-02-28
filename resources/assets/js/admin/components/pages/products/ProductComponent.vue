@@ -28,7 +28,9 @@
                 </td>
                 <td v-text="product.name"></td>
                 <td>
-                    <a href="#" class="btn btn-primary">Editar</a>
+                    <router-link :to="{name: 'product.edit', params: {id: product.id}}" class="btn btn-success">
+                        Editar
+                    </router-link>
                     <a href="#" class="btn btn-danger">Deletar</a>
                 </td>
             </tr>
