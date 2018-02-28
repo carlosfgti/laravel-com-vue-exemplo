@@ -1,6 +1,10 @@
 <template>
   <div>
-      #Sou o AdminComponent
+      <ul>
+        <router-link class="nav-link" to="/">Home</router-link>
+      </ul>
+
+      <router-view></router-view>
   </div>
 </template>
 
