@@ -34092,14 +34092,34 @@ var index_esm = {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony default export */ __webpack_exports__["a"] = ({});
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__configs_configs__ = __webpack_require__(73);
+
+
+
+var RESOURCE = 'products';
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+    loadProducts: function loadProducts(context) {
+        __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('' + __WEBPACK_IMPORTED_MODULE_1__configs_configs__["a" /* URL_BASE */] + RESOURCE).then(function (response) {
+            return context.commit('PRODUCTS_LOAD', response.data);
+        }).catch(function (error) {
+            return console.log(error);
+        }).finally(function () {});
+    }
+});
 
 /***/ }),
 /* 62 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony default export */ __webpack_exports__["a"] = ({});
+/* harmony default export */ __webpack_exports__["a"] = ({
+    PRODUCTS_LOAD: function PRODUCTS_LOAD(state, products) {
+        state.items = products;
+    }
+});
 
 /***/ }),
 /* 63 */,
@@ -34442,9 +34462,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: 'product-component',
+    created: function created() {
+        this.$store.dispatch('loadProducts');
+    },
     data: function data() {
         return {};
     },
@@ -34478,13 +34503,17 @@ var render = function() {
         _vm._l(_vm.products.data, function(product, key) {
           return _c("tr", { key: key }, [
             _c("td", [
-              _c("img", {
-                staticClass: "img-list",
-                attrs: {
-                  src: ["/storage/products/" + product.image],
-                  alt: product.name
-                }
-              })
+              product.image
+                ? _c("div", [
+                    _c("img", {
+                      staticClass: "img-list",
+                      attrs: {
+                        src: ["/storage/products/" + product.image],
+                        alt: product.name
+                      }
+                    })
+                  ])
+                : _vm._e()
             ]),
             _vm._v(" "),
             _c("td", { domProps: { textContent: _vm._s(product.name) } }),
@@ -34547,6 +34576,14 @@ if (false) {
     require("vue-hot-reload-api")      .rerender("data-v-181eaa34", module.exports)
   }
 }
+
+/***/ }),
+/* 73 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return URL_BASE; });
+var URL_BASE = '/api/v1/';
 
 /***/ })
 /******/ ]);

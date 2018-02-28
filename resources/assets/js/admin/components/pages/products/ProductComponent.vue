@@ -20,7 +20,9 @@
             </tr>
             <tr v-for="(product, key) in products.data" :key="key">
                 <td>
+                  <div v-if="product.image">
                     <img :src="[`/storage/products/${product.image}`]" :alt="product.name" class="img-list">
+                  </div>
                 </td>
                 <td v-text="product.name"></td>
                 <td>
@@ -37,6 +39,9 @@
 <script>
 export default {
     name: 'product-component',
+    created () {
+      this.$store.dispatch('loadProducts')
+    },
     data () {
         return {
         }
