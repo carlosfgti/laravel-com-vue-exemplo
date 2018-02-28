@@ -1,9 +1,12 @@
 // Recupera o arquivo com as configurações iniciais do projeto
 require('./bootstrap')
 window.Vue = require('vue')
+import Snotify from 'vue-snotify'
 
 import router from './routes/routers'
 import store from './vuex/store'
+
+Vue.use(Snotify)
 
 /**
  * Cria os componentes
