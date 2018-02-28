@@ -3,6 +3,7 @@
       <ul>
         <router-link class="nav-link" :to="{name: 'home'}">Home</router-link>
         <router-link class="nav-link" :to="{name: 'products'}">Produtos</router-link>
+        <router-link class="nav-link" :to="{name: 'auth'}">Login</router-link>
       </ul>
 
       <router-view></router-view>

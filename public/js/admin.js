@@ -29827,6 +29827,9 @@ module.exports = Vue$3;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_pages_home_HomeComponent___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__components_pages_home_HomeComponent__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_pages_products_ProductComponent__ = __webpack_require__(55);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_pages_products_ProductComponent___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__components_pages_products_ProductComponent__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_pages_auth_LoginComponent__ = __webpack_require__(66);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_pages_auth_LoginComponent___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__components_pages_auth_LoginComponent__);
+
 
 
 
@@ -29835,7 +29838,7 @@ module.exports = Vue$3;
 
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]);
 
-var routes = [{ path: '/', component: __WEBPACK_IMPORTED_MODULE_2__components_pages_home_HomeComponent___default.a, name: 'home' }, { path: '/products', component: __WEBPACK_IMPORTED_MODULE_3__components_pages_products_ProductComponent___default.a, name: 'products' }];
+var routes = [{ path: '/', component: __WEBPACK_IMPORTED_MODULE_2__components_pages_home_HomeComponent___default.a, name: 'home' }, { path: '/login', component: __WEBPACK_IMPORTED_MODULE_4__components_pages_auth_LoginComponent___default.a, name: 'auth' }, { path: '/products', component: __WEBPACK_IMPORTED_MODULE_3__components_pages_products_ProductComponent___default.a, name: 'products' }];
 
 var router = new __WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]({
     routes: routes
@@ -32627,7 +32630,7 @@ exports = module.exports = __webpack_require__(46)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -32992,6 +32995,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({});
 
@@ -33019,6 +33023,12 @@ var render = function() {
             "router-link",
             { staticClass: "nav-link", attrs: { to: { name: "products" } } },
             [_vm._v("Produtos")]
+          ),
+          _vm._v(" "),
+          _c(
+            "router-link",
+            { staticClass: "nav-link", attrs: { to: { name: "auth" } } },
+            [_vm._v("Login")]
           )
         ],
         1
@@ -34124,6 +34134,246 @@ var index_esm = {
     actions: __WEBPACK_IMPORTED_MODULE_1__actions__["a" /* default */],
     mutations: __WEBPACK_IMPORTED_MODULE_2__mutations__["a" /* default */]
 });
+
+/***/ }),
+/* 65 */,
+/* 66 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(10)
+/* script */
+var __vue_script__ = __webpack_require__(67)
+/* template */
+var __vue_template__ = __webpack_require__(68)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\admin\\components\\pages\\auth\\LoginComponent.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-1bc3a9b6", Component.options)
+  } else {
+    hotAPI.reload("data-v-1bc3a9b6", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 67 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            auth: {
+                email: '',
+                password: ''
+            },
+            errors: {},
+            error: ''
+        };
+    },
+
+    methods: {
+        login: function login() {}
+    }
+});
+
+/***/ }),
+/* 68 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("h1", [_vm._v("Login")]),
+    _vm._v(" "),
+    _vm.error
+      ? _c("div", {
+          staticClass: "alert alert-warning",
+          domProps: { textContent: _vm._s(_vm.error) }
+        })
+      : _vm._e(),
+    _vm._v(" "),
+    _c(
+      "form",
+      {
+        staticClass: "form",
+        on: {
+          submit: function($event) {
+            $event.preventDefault()
+            _vm.login($event)
+          }
+        }
+      },
+      [
+        _c(
+          "div",
+          {
+            staticClass: "form-group",
+            class: { "has-error": _vm.errors.email }
+          },
+          [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.auth.email,
+                  expression: "auth.email"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: { type: "email", placeholder: "E-mail" },
+              domProps: { value: _vm.auth.email },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.auth, "email", $event.target.value)
+                }
+              }
+            }),
+            _vm._v(" "),
+            _vm.errors.email
+              ? _c(
+                  "div",
+                  { staticClass: "help-block" },
+                  _vm._l(_vm.errors.email, function(error, index) {
+                    return _c("div", { key: index }, [
+                      _c("strong", [_vm._v(_vm._s(error))])
+                    ])
+                  })
+                )
+              : _vm._e()
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass: "form-group",
+            class: { "has-error": _vm.errors.email }
+          },
+          [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.auth.password,
+                  expression: "auth.password"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: { type: "password", placeholder: "Senha" },
+              domProps: { value: _vm.auth.password },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.auth, "password", $event.target.value)
+                }
+              }
+            }),
+            _vm._v(" "),
+            _vm._l(_vm.errors.password, function(error, index) {
+              return _c("div", { key: index }, [
+                _c("strong", [_vm._v(_vm._s(error))])
+              ])
+            })
+          ],
+          2
+        ),
+        _vm._v(" "),
+        _vm._m(0)
+      ]
+    )
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group" }, [
+      _c(
+        "button",
+        { staticClass: "btn btn-success", attrs: { type: "submit" } },
+        [_vm._v("Entrar")]
+      )
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-1bc3a9b6", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);
