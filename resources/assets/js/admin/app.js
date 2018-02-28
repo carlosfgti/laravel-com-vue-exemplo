@@ -9,6 +9,7 @@ import store from './vuex/store'
  * Cria os componentes
  */
 Vue.component('admin-component', require('./components/AdminComponent.vue'))
+Vue.component('preloader-component', require('./components/layouts/PreloaderComponent'))
 
 
 // Instância do Vue JS, e seletor

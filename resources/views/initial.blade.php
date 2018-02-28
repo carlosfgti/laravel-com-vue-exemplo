@@ -14,6 +14,7 @@
     </head>
     <body>
         <div id="app">
+            <preloader-component></preloader-component>
             <admin-component></admin-component>
         </div>
 
