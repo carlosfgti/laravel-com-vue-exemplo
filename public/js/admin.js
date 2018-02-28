@@ -34115,11 +34115,11 @@ var index_esm = {
 var RESOURCE = 'products/';
 
 /* harmony default export */ __webpack_exports__["a"] = ({
-    loadProducts: function loadProducts(context) {
+    loadProducts: function loadProducts(context, params) {
         // Inicia Preloader
         context.commit('LOADING', true);
 
-        __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('' + __WEBPACK_IMPORTED_MODULE_1__configs_configs__["a" /* URL_BASE */] + RESOURCE).then(function (response) {
+        __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('' + __WEBPACK_IMPORTED_MODULE_1__configs_configs__["a" /* URL_BASE */] + RESOURCE, { params: params }).then(function (response) {
             return context.commit('PRODUCTS_LOAD', response.data);
         }).catch(function (error) {
             return console.log(error);
@@ -34485,6 +34485,16 @@ exports.push([module.i, "\n.img-list[data-v-181eaa34]{max-width: 50px;\n}\r\n", 
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -34531,7 +34541,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: 'product-component',
     created: function created() {
-        this.$store.dispatch('loadProducts');
+        this.loadProducts();
     },
     data: function data() {
         return {};
@@ -34540,6 +34550,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     computed: {
         products: function products() {
             return this.$store.state.products.items;
+        },
+        params: function params() {
+            return {
+                page: this.products.current_page
+            };
+        }
+    },
+    methods: {
+        loadProducts: function loadProducts(page) {
+            this.$store.dispatch('loadProducts', _extends({}, this.params, { page: page }));
         }
     }
 });
@@ -34627,7 +34647,44 @@ var render = function() {
         })
       ],
       2
-    )
+    ),
+    _vm._v(" "),
+    _vm.products.last_page > 1
+      ? _c("div", { staticClass: "text-right" }, [
+          _c(
+            "ul",
+            { staticClass: "pagination" },
+            _vm._l(_vm.products.last_page, function(page) {
+              return _c(
+                "li",
+                {
+                  key: page,
+                  class: [
+                    "page-item",
+                    { active: page == _vm.products.current_page }
+                  ]
+                },
+                [
+                  _c(
+                    "a",
+                    {
+                      staticClass: "page-link",
+                      attrs: { href: "#" },
+                      on: {
+                        click: function($event) {
+                          $event.preventDefault()
+                          _vm.loadProducts(page)
+                        }
+                      }
+                    },
+                    [_vm._v(_vm._s(page))]
+                  )
+                ]
+              )
+            })
+          )
+        ])
+      : _vm._e()
   ])
 }
 var staticRenderFns = [

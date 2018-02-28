@@ -36,6 +36,14 @@
             </tr>
         </table>
 
+        <div class="text-right" v-if="products.last_page > 1">
+            <ul class="pagination">
+                <li v-for="page in products.last_page" :key="page" :class="['page-item', {active: page == products.current_page}]">
+                    <a href="#" @click.prevent="loadProducts(page)" class="page-link">{{ page }}</a>
+                </li>
+            </ul>
+        </div>
+
 
     </div>
 </template>
@@ -44,7 +52,7 @@
 export default {
     name: 'product-component',
     created () {
-      this.$store.dispatch('loadProducts')
+      this.loadProducts()
     },
     data () {
         return {
@@ -54,6 +62,16 @@ export default {
       products () {
           return this.$store.state.products.items
       },
+      params () {
+          return {
+              page: this.products.current_page,
+          }
+      }
+    },
+    methods: {
+        loadProducts (page) {
+            this.$store.dispatch('loadProducts', {...this.params, page})
+        }
     }
 }
 </script>

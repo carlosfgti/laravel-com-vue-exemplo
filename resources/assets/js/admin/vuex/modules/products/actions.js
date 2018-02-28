@@ -4,11 +4,11 @@ import { URL_BASE } from '../../../configs/configs'
 const RESOURCE = 'products/'
 
 export default {
-    loadProducts (context) {
+    loadProducts (context, params) {
         // Inicia Preloader
         context.commit('LOADING', true)
 
-        axios.get(`${URL_BASE}${RESOURCE}`)
+        axios.get(`${URL_BASE}${RESOURCE}`, {params})
                     .then(response => context.commit('PRODUCTS_LOAD', response.data))
                     .catch(error => console.log(error))
                     .finally(() => context.commit('LOADING', false))
