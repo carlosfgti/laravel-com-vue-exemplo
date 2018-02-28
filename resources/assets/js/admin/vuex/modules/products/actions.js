@@ -33,10 +33,7 @@ export default {
         return new Promise((resolve, reject) => {
             axios.post(`${URL_BASE}${RESOURCE}`, product)
                     .then(response => resolve())
-                    .catch(error => {
-                        console.log(error)
-                        reject(error.response.data.errors)
-                    })
+                    .catch(error => reject(error.response.data.errors))
                     .finally(() => context.commit('LOADING', false))
         })
     },
@@ -47,6 +44,18 @@ export default {
 
         return new Promise((resolve, reject) => {
             axios.put(`${URL_BASE}${RESOURCE}${product.id}`, product)
+                    .then(response => resolve())
+                    .catch(error => reject(error.response.data))
+                    .finally(() => context.commit('LOADING', false))
+        })
+    },
+
+
+    destroyProduct (context, id) {
+        context.commit('LOADING', true)
+
+        return new Promise((resolve, reject) => {
+            axios.delete(`${URL_BASE}${RESOURCE}${id}`)
                     .then(response => resolve())
                     .catch(error => reject(error.response.data))
                     .finally(() => context.commit('LOADING', false))

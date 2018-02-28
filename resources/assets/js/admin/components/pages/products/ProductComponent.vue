@@ -35,7 +35,7 @@
                     <router-link :to="{name: 'product.edit', params: {id: product.id}}" class="btn btn-success">
                         Editar
                     </router-link>
-                    <a href="#" class="btn btn-danger">Deletar</a>
+                    <a href="#" @click.prevent="confirmDelete(product)" class="btn btn-danger">Deletar</a>
                 </td>
             </tr>
         </table>
@@ -63,6 +63,7 @@ export default {
     data () {
         return {
             search: null,
+            productId: null,
         }
     },
     computed: {
@@ -84,6 +85,27 @@ export default {
             this.search = search
 
             this.loadProducts(1)
+        },
+        confirmDelete (product) {
+            this.productId = product.id
+
+            this.$snotify.error(`Deseja realmente deletar o produto: ${product.name}`, product.name, {
+                timeout: 10000,
+                showProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                buttons: [
+                    {text: 'Não', action: () => console.log('Clicked: No')},
+                    {text: 'Sim', action: () => this.destroy(), bold: false},
+                ]
+            })
+        },
+        destroy () {
+            this.$store.dispatch('destroyProduct', this.productId)
+                            .then(() => {
+                                this.productId = null
+                                this.loadProducts(1)
+                            })
         }
     },
     components: {

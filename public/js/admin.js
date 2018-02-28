@@ -34147,8 +34147,7 @@ var RESOURCE = 'products/';
             __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post('' + __WEBPACK_IMPORTED_MODULE_1__configs_configs__["a" /* URL_BASE */] + RESOURCE, product).then(function (response) {
                 return resolve();
             }).catch(function (error) {
-                console.log(error);
-                reject(error.response.data.errors);
+                return reject(error.response.data.errors);
             }).finally(function () {
                 return context.commit('LOADING', false);
             });
@@ -34159,6 +34158,19 @@ var RESOURCE = 'products/';
 
         return new Promise(function (resolve, reject) {
             __WEBPACK_IMPORTED_MODULE_0_axios___default.a.put('' + __WEBPACK_IMPORTED_MODULE_1__configs_configs__["a" /* URL_BASE */] + RESOURCE + product.id, product).then(function (response) {
+                return resolve();
+            }).catch(function (error) {
+                return reject(error.response.data);
+            }).finally(function () {
+                return context.commit('LOADING', false);
+            });
+        });
+    },
+    destroyProduct: function destroyProduct(context, id) {
+        context.commit('LOADING', true);
+
+        return new Promise(function (resolve, reject) {
+            __WEBPACK_IMPORTED_MODULE_0_axios___default.a.delete('' + __WEBPACK_IMPORTED_MODULE_1__configs_configs__["a" /* URL_BASE */] + RESOURCE + id).then(function (response) {
                 return resolve();
             }).catch(function (error) {
                 return reject(error.response.data);
@@ -34553,7 +34565,8 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
     },
     data: function data() {
         return {
-            search: null
+            search: null,
+            productId: null
         };
     },
 
@@ -34576,6 +34589,31 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
             this.search = search;
 
             this.loadProducts(1);
+        },
+        confirmDelete: function confirmDelete(product) {
+            var _this = this;
+
+            this.productId = product.id;
+
+            this.$snotify.error('Deseja realmente deletar o produto: ' + product.name, product.name, {
+                timeout: 10000,
+                showProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                buttons: [{ text: 'Não', action: function action() {
+                        return console.log('Clicked: No');
+                    } }, { text: 'Sim', action: function action() {
+                        return _this.destroy();
+                    }, bold: false }]
+            });
+        },
+        destroy: function destroy() {
+            var _this2 = this;
+
+            this.$store.dispatch('destroyProduct', this.productId).then(function () {
+                _this2.productId = null;
+                _this2.loadProducts(1);
+            });
         }
     },
     components: {
@@ -34676,7 +34714,16 @@ var render = function() {
                 _vm._v(" "),
                 _c(
                   "a",
-                  { staticClass: "btn btn-danger", attrs: { href: "#" } },
+                  {
+                    staticClass: "btn btn-danger",
+                    attrs: { href: "#" },
+                    on: {
+                      click: function($event) {
+                        $event.preventDefault()
+                        _vm.confirmDelete(product)
+                      }
+                    }
+                  },
                   [_vm._v("Deletar")]
                 )
               ],
