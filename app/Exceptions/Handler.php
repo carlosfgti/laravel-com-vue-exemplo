@@ -48,6 +48,12 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+        if( $exception instanceof \Symfony\Component\HttpKernel\Exception\NotFoundHttpException )
+            return response()->json(['error' => 'not_found_uri'], 404);
+        
+        if( $exception instanceof \Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException )
+            return response()->json(['error' => 'method_not_allowed'], 405);
+
         return parent::render($request, $exception);
     }
 }
