@@ -37982,7 +37982,10 @@ var render = function() {
     "div",
     { staticClass: "container" },
     [
-      _c("h1", [_vm._v("Editar Tarefa")]),
+      _c("h1", [
+        _vm._v("Editar Produto "),
+        _c("b", [_vm._v(_vm._s(_vm.product.name))])
+      ]),
       _vm._v(" "),
       _c("form-product-component", {
         attrs: { product: _vm.product, update: true }

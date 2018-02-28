@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <h1>Editar Tarefa</h1>
+        <h1>Editar Produto <b>{{product.name}}</b></h1>
 
         <form-product-component
             :product="product"
