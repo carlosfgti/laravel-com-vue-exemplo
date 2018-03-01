@@ -37881,7 +37881,7 @@ exports = module.exports = __webpack_require__(4)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n.router-link-exact-active {\r\n    background: #cecece;\r\n    color: #000;\r\n    border-radius: 0 !important;\n}\r\n", ""]);
 
 // exports
 
@@ -37920,6 +37920,7 @@ var render = function() {
     [
       _c(
         "ul",
+        { staticClass: "nav nav-pills nav-stacked" },
         [
           _c(
             "router-link",
