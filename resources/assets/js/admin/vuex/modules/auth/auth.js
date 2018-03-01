@@ -14,7 +14,7 @@ const mutations = {
         state.me = user
         state.authenticated = true
     },
-    AUTH_USER_FAIL (state) {
+    AUTH_USER_LOGOUT (state) {
         state.me = {},
         state.authenticated = false
     }
@@ -44,7 +44,7 @@ const actions = {
 
     logout (context) {
         localStorage.removeItem(NAME_TOKEN)
-        context.commit('AUTH_USER_FAIL')
+        context.commit('AUTH_USER_LOGOUT')
     }
 }
 

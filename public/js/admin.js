@@ -36044,7 +36044,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
-            auth: {
+            formData: {
                 email: '',
                 password: ''
             },
@@ -36054,7 +36054,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
 
     methods: {
-        login: function login() {}
+        login: function login() {
+            var _this = this;
+
+            this.$store.dispatch('login', this.formData).then(function () {
+                _this.$snotify.success('Sucesso ao logar', 'OK');
+
+                _this.$router.push({ name: 'products' });
+            }).catch(function (response) {
+                console.log(response);
+                _this.error = response.error;
+                _this.$snotify.error('Falha...', 'Erro');
+            });
+        }
     }
 });
 
@@ -36100,19 +36112,19 @@ var render = function() {
                 {
                   name: "model",
                   rawName: "v-model",
-                  value: _vm.auth.email,
-                  expression: "auth.email"
+                  value: _vm.formData.email,
+                  expression: "formData.email"
                 }
               ],
               staticClass: "form-control",
               attrs: { type: "email", placeholder: "E-mail" },
-              domProps: { value: _vm.auth.email },
+              domProps: { value: _vm.formData.email },
               on: {
                 input: function($event) {
                   if ($event.target.composing) {
                     return
                   }
-                  _vm.$set(_vm.auth, "email", $event.target.value)
+                  _vm.$set(_vm.formData, "email", $event.target.value)
                 }
               }
             }),
@@ -36143,19 +36155,19 @@ var render = function() {
                 {
                   name: "model",
                   rawName: "v-model",
-                  value: _vm.auth.password,
-                  expression: "auth.password"
+                  value: _vm.formData.password,
+                  expression: "formData.password"
                 }
               ],
               staticClass: "form-control",
               attrs: { type: "password", placeholder: "Senha" },
-              domProps: { value: _vm.auth.password },
+              domProps: { value: _vm.formData.password },
               on: {
                 input: function($event) {
                   if ($event.target.composing) {
                     return
                   }
-                  _vm.$set(_vm.auth, "password", $event.target.value)
+                  _vm.$set(_vm.formData, "password", $event.target.value)
                 }
               }
             }),
@@ -36701,6 +36713,8 @@ if (false) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex__ = __webpack_require__(69);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modules_products_products__ = __webpack_require__(70);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__modules_preloader_preloader__ = __webpack_require__(75);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modules_auth_auth__ = __webpack_require__(97);
+
 
 
 
@@ -36712,7 +36726,8 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex
 /* harmony default export */ __webpack_exports__["a"] = (new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
     modules: {
         products: __WEBPACK_IMPORTED_MODULE_2__modules_products_products__["a" /* default */],
-        preloader: __WEBPACK_IMPORTED_MODULE_3__modules_preloader_preloader__["a" /* default */]
+        preloader: __WEBPACK_IMPORTED_MODULE_3__modules_preloader_preloader__["a" /* default */],
+        auth: __WEBPACK_IMPORTED_MODULE_4__modules_auth_auth__["a" /* default */]
     }
 }));
 
@@ -37706,7 +37721,7 @@ var RESOURCE = 'products/';
         // Inicia Preloader
         context.commit('LOADING', true);
 
-        __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('' + __WEBPACK_IMPORTED_MODULE_1__configs_configs__["a" /* URL_BASE */] + RESOURCE, { params: params }).then(function (response) {
+        __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('' + __WEBPACK_IMPORTED_MODULE_1__configs_configs__["b" /* URL_BASE */] + RESOURCE, { params: params }).then(function (response) {
             return context.commit('PRODUCTS_LOAD', response.data);
         }).catch(function (error) {
             return console.log(error);
@@ -37718,7 +37733,7 @@ var RESOURCE = 'products/';
         context.commit('LOADING', true);
 
         return new Promise(function (resolve, reject) {
-            __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('' + __WEBPACK_IMPORTED_MODULE_1__configs_configs__["a" /* URL_BASE */] + RESOURCE + id).then(function (response) {
+            __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('' + __WEBPACK_IMPORTED_MODULE_1__configs_configs__["b" /* URL_BASE */] + RESOURCE + id).then(function (response) {
                 return resolve(response.data);
             }).catch(function (error) {
                 return reject(error);
@@ -37731,7 +37746,7 @@ var RESOURCE = 'products/';
         context.commit('LOADING', true);
 
         return new Promise(function (resolve, reject) {
-            __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post('' + __WEBPACK_IMPORTED_MODULE_1__configs_configs__["a" /* URL_BASE */] + RESOURCE, product).then(function (response) {
+            __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post('' + __WEBPACK_IMPORTED_MODULE_1__configs_configs__["b" /* URL_BASE */] + RESOURCE, product).then(function (response) {
                 return resolve();
             }).catch(function (error) {
                 return reject(error.response.data.errors);
@@ -37744,7 +37759,7 @@ var RESOURCE = 'products/';
         context.commit('LOADING', true);
 
         return new Promise(function (resolve, reject) {
-            __WEBPACK_IMPORTED_MODULE_0_axios___default.a.put('' + __WEBPACK_IMPORTED_MODULE_1__configs_configs__["a" /* URL_BASE */] + RESOURCE + product.id, product).then(function (response) {
+            __WEBPACK_IMPORTED_MODULE_0_axios___default.a.put('' + __WEBPACK_IMPORTED_MODULE_1__configs_configs__["b" /* URL_BASE */] + RESOURCE + product.id, product).then(function (response) {
                 return resolve();
             }).catch(function (error) {
                 return reject(error.response.data);
@@ -37757,7 +37772,7 @@ var RESOURCE = 'products/';
         context.commit('LOADING', true);
 
         return new Promise(function (resolve, reject) {
-            __WEBPACK_IMPORTED_MODULE_0_axios___default.a.delete('' + __WEBPACK_IMPORTED_MODULE_1__configs_configs__["a" /* URL_BASE */] + RESOURCE + id).then(function (response) {
+            __WEBPACK_IMPORTED_MODULE_0_axios___default.a.delete('' + __WEBPACK_IMPORTED_MODULE_1__configs_configs__["b" /* URL_BASE */] + RESOURCE + id).then(function (response) {
                 return resolve();
             }).catch(function (error) {
                 return reject(error.response.data);
@@ -37773,8 +37788,8 @@ var RESOURCE = 'products/';
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return URL_BASE; });
-/* unused harmony export NAME_TOKEN */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return URL_BASE; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return NAME_TOKEN; });
 var URL_BASE = '/api/v1/';
 var NAME_TOKEN = 'auth_token';
 
@@ -38467,6 +38482,67 @@ if (false) {
     require("vue-hot-reload-api")      .rerender("data-v-19238276", module.exports)
   }
 }
+
+/***/ }),
+/* 97 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__configs_configs__ = __webpack_require__(73);
+
+
+
+
+var RESOURCE = 'auth/';
+
+var state = {
+    me: {},
+    authenticated: false
+};
+
+var mutations = {
+    AUTH_USER_OK: function AUTH_USER_OK(state, user) {
+        state.me = user;
+        state.authenticated = true;
+    },
+    AUTH_USER_LOGOUT: function AUTH_USER_LOGOUT(state) {
+        state.me = {}, state.authenticated = false;
+    }
+};
+
+var actions = {
+    login: function login(context, formData) {
+        context.commit('LOADING', true);
+
+        return new Promise(function (resolve, reject) {
+            __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post('' + __WEBPACK_IMPORTED_MODULE_1__configs_configs__["b" /* URL_BASE */] + RESOURCE, formData).then(function (response) {
+                context.commit('AUTH_USER_OK', response.data.user);
+
+                localStorage.setItem(__WEBPACK_IMPORTED_MODULE_1__configs_configs__["a" /* NAME_TOKEN */], response.data.token);
+
+                resolve();
+            }).catch(function (error) {
+                console.log(error.response);
+
+                reject(error.response.data);
+            }).finally(function () {
+                return context.commit('LOADING', false);
+            });
+        });
+    },
+    logout: function logout(context) {
+        localStorage.removeItem(__WEBPACK_IMPORTED_MODULE_1__configs_configs__["a" /* NAME_TOKEN */]);
+        context.commit('AUTH_USER_LOGOUT');
+    }
+};
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+    state: state,
+    mutations: mutations,
+    actions: actions
+});
 
 /***/ })
 /******/ ]);
