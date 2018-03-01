@@ -8,8 +8,22 @@ import Page404 from '../components/pages/404/Page404'
 export default [
     {path: '/', component: HomeComponent, name: 'home'},
     {path: '/login', component: LoginComponent, name: 'auth'},
-    {path: '/products', component: ProductComponent, name: 'products'},
-    {path: '/product/add', component: ProductAddComponent, name: 'product.add'},
+    {
+        path: '/products',
+        component: ProductComponent, 
+        name: 'products',
+        meta: {
+            auth: true
+        }
+    },
+    {
+        path: '/product/add',
+        component: ProductAddComponent,
+        name: 'product.add',
+        meta: {
+            auth: true
+        }
+    },
     {path: '/product/:id/edit', component: ProductEditComponent, name: 'product.edit', props: true},
     {path: '*', component: Page404},
 ]
