@@ -32676,23 +32676,7 @@ if (typeof window !== 'undefined' && window.hasOwnProperty('Vue')) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_router__ = __webpack_require__(43);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_pages_home_HomeComponent__ = __webpack_require__(44);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_pages_home_HomeComponent___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__components_pages_home_HomeComponent__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_pages_products_ProductComponent__ = __webpack_require__(46);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_pages_products_ProductComponent___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__components_pages_products_ProductComponent__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_pages_auth_LoginComponent__ = __webpack_require__(55);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_pages_auth_LoginComponent___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__components_pages_auth_LoginComponent__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_pages_products_ProductAddComponent__ = __webpack_require__(58);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_pages_products_ProductAddComponent___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__components_pages_products_ProductAddComponent__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_pages_products_ProductEditComponent__ = __webpack_require__(65);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_pages_products_ProductEditComponent___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__components_pages_products_ProductEditComponent__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_pages_404_Page404__ = __webpack_require__(90);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_pages_404_Page404___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7__components_pages_404_Page404__);
-
-
-
-
-
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__routers_map__ = __webpack_require__(98);
 
 
 
@@ -32700,10 +32684,8 @@ if (typeof window !== 'undefined' && window.hasOwnProperty('Vue')) {
 
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]);
 
-var routes = [{ path: '/', component: __WEBPACK_IMPORTED_MODULE_2__components_pages_home_HomeComponent___default.a, name: 'home' }, { path: '/login', component: __WEBPACK_IMPORTED_MODULE_4__components_pages_auth_LoginComponent___default.a, name: 'auth' }, { path: '/products', component: __WEBPACK_IMPORTED_MODULE_3__components_pages_products_ProductComponent___default.a, name: 'products' }, { path: '/product/add', component: __WEBPACK_IMPORTED_MODULE_5__components_pages_products_ProductAddComponent___default.a, name: 'product.add' }, { path: '/product/:id/edit', component: __WEBPACK_IMPORTED_MODULE_6__components_pages_products_ProductEditComponent___default.a, name: 'product.edit', props: true }, { path: '*', component: __WEBPACK_IMPORTED_MODULE_7__components_pages_404_Page404___default.a }];
-
 var router = new __WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]({
-    routes: routes
+    routes: __WEBPACK_IMPORTED_MODULE_2__routers_map__["a" /* default */]
 });
 
 /* harmony default export */ __webpack_exports__["a"] = (router);
@@ -38543,6 +38525,32 @@ var actions = {
     mutations: mutations,
     actions: actions
 });
+
+/***/ }),
+/* 98 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_pages_home_HomeComponent__ = __webpack_require__(44);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_pages_home_HomeComponent___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_pages_home_HomeComponent__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_pages_products_ProductComponent__ = __webpack_require__(46);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_pages_products_ProductComponent___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_pages_products_ProductComponent__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_pages_auth_LoginComponent__ = __webpack_require__(55);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_pages_auth_LoginComponent___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__components_pages_auth_LoginComponent__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_pages_products_ProductAddComponent__ = __webpack_require__(58);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_pages_products_ProductAddComponent___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__components_pages_products_ProductAddComponent__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_pages_products_ProductEditComponent__ = __webpack_require__(65);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_pages_products_ProductEditComponent___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__components_pages_products_ProductEditComponent__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_pages_404_Page404__ = __webpack_require__(90);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_pages_404_Page404___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__components_pages_404_Page404__);
+
+
+
+
+
+
+
+/* harmony default export */ __webpack_exports__["a"] = ([{ path: '/', component: __WEBPACK_IMPORTED_MODULE_0__components_pages_home_HomeComponent___default.a, name: 'home' }, { path: '/login', component: __WEBPACK_IMPORTED_MODULE_2__components_pages_auth_LoginComponent___default.a, name: 'auth' }, { path: '/products', component: __WEBPACK_IMPORTED_MODULE_1__components_pages_products_ProductComponent___default.a, name: 'products' }, { path: '/product/add', component: __WEBPACK_IMPORTED_MODULE_3__components_pages_products_ProductAddComponent___default.a, name: 'product.add' }, { path: '/product/:id/edit', component: __WEBPACK_IMPORTED_MODULE_4__components_pages_products_ProductEditComponent___default.a, name: 'product.edit', props: true }, { path: '*', component: __WEBPACK_IMPORTED_MODULE_5__components_pages_404_Page404___default.a }]);
 
 /***/ })
 /******/ ]);
