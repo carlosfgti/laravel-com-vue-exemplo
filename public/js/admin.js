@@ -32709,6 +32709,12 @@ router.beforeEach(function (to, from, next) {
         return router.push({ name: 'auth' });
     }
 
+    if (to.matched.some(function (record) {
+        return record.meta.auth;
+    }) && !__WEBPACK_IMPORTED_MODULE_3__vuex_store__["a" /* default */].state.auth.authenticated) {
+        return router.push({ name: 'auth' });
+    }
+
     next();
 });
 

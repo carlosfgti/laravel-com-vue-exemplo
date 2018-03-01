@@ -15,6 +15,10 @@ router.beforeEach((to, from, next) => {
         return router.push({name: 'auth'})
     }
 
+    if ( to.matched.some(record => record.meta.auth) &&  !store.state.auth.authenticated) {
+        return router.push({name: 'auth'})
+    }
+
     next()
 })
 
