@@ -37881,7 +37881,7 @@ exports = module.exports = __webpack_require__(4)(false);
 
 
 // module
-exports.push([module.i, "\n.router-link-exact-active {color: #4bd02a !important;\n}\r\n", ""]);
+exports.push([module.i, "\n.router-link-exact-active {color: #4bd02a !important;\n}\n.spacing-custon{padding: 40px 0;\n}\r\n", ""]);
 
 // exports
 
@@ -37892,6 +37892,8 @@ exports.push([module.i, "\n.router-link-exact-active {color: #4bd02a !important;
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
 //
 //
 //
@@ -37919,49 +37921,38 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _c(
-        "nav",
-        { staticClass: "navbar navbar-expand-lg navbar-dark bg-dark" },
-        [
-          _c("div", { staticClass: "container" }, [
+  return _c("div", [
+    _c("nav", { staticClass: "navbar navbar-expand-lg navbar-dark bg-dark" }, [
+      _c("div", { staticClass: "container" }, [
+        _c(
+          "ul",
+          { staticClass: "nav navbar-nav navbar-right" },
+          [
             _c(
-              "ul",
-              { staticClass: "nav navbar-nav navbar-right" },
-              [
-                _c(
-                  "router-link",
-                  { staticClass: "nav-link", attrs: { to: { name: "home" } } },
-                  [_vm._v("Home")]
-                ),
-                _vm._v(" "),
-                _c(
-                  "router-link",
-                  {
-                    staticClass: "nav-link",
-                    attrs: { to: { name: "products" } }
-                  },
-                  [_vm._v("Produtos")]
-                ),
-                _vm._v(" "),
-                _c(
-                  "router-link",
-                  { staticClass: "nav-link", attrs: { to: { name: "auth" } } },
-                  [_vm._v("Login")]
-                )
-              ],
-              1
+              "router-link",
+              { staticClass: "nav-link", attrs: { to: { name: "home" } } },
+              [_vm._v("Home")]
+            ),
+            _vm._v(" "),
+            _c(
+              "router-link",
+              { staticClass: "nav-link", attrs: { to: { name: "products" } } },
+              [_vm._v("Produtos")]
+            ),
+            _vm._v(" "),
+            _c(
+              "router-link",
+              { staticClass: "nav-link", attrs: { to: { name: "auth" } } },
+              [_vm._v("Login")]
             )
-          ])
-        ]
-      ),
-      _vm._v(" "),
-      _c("router-view")
-    ],
-    1
-  )
+          ],
+          1
+        )
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "spacing-custon" }, [_c("router-view")], 1)
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true

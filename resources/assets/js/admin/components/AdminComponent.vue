@@ -10,7 +10,9 @@
       </div>
     </nav>
 
+    <div class="spacing-custon">
       <router-view></router-view>
+    </div>
   </div>
 </template>
 
@@ -22,4 +24,5 @@ export default {
 
 <style>
 .router-link-exact-active {color: #4bd02a !important;}
+.spacing-custon{padding: 40px 0;}
 </style>
