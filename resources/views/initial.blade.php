@@ -18,7 +18,7 @@
 
             <preloader-component></preloader-component>
             
-            <admin-component></admin-component>
+            <router-view></router-view>
         </div>
 
     <script src="{{ url('js/admin.js') }}"></script>
