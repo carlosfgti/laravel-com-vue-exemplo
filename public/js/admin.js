@@ -37626,8 +37626,8 @@ var render = function() {
           [
             _c(
               "router-link",
-              { staticClass: "nav-link", attrs: { to: { name: "home" } } },
-              [_vm._v("Home")]
+              { staticClass: "nav-link", attrs: { to: { name: "dashboard" } } },
+              [_vm._v("Dashboard")]
             ),
             _vm._v(" "),
             _vm.me.name
