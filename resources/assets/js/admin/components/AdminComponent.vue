@@ -1,10 +1,14 @@
 <template>
   <div>
-      <ul class="nav nav-pills nav-stacked">
-        <router-link class="nav-link" :to="{name: 'home'}">Home</router-link>
-        <router-link class="nav-link" :to="{name: 'products'}">Produtos</router-link>
-        <router-link class="nav-link" :to="{name: 'auth'}">Login</router-link>
-      </ul>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container">
+        <ul class="nav navbar-nav navbar-right">
+          <router-link class="nav-link" :to="{name: 'home'}">Home</router-link>
+          <router-link class="nav-link" :to="{name: 'products'}">Produtos</router-link>
+          <router-link class="nav-link" :to="{name: 'auth'}">Login</router-link>
+        </ul>
+      </div>
+    </nav>
 
       <router-view></router-view>
   </div>
@@ -17,9 +21,5 @@ export default {
 </script>
 
 <style>
-.router-link-exact-active {
-    background: #cecece;
-    color: #000;
-    border-radius: 0 !important;
-}
+.router-link-exact-active {color: #4bd02a !important;}
 </style>

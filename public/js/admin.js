@@ -37881,7 +37881,7 @@ exports = module.exports = __webpack_require__(4)(false);
 
 
 // module
-exports.push([module.i, "\n.router-link-exact-active {\r\n    background: #cecece;\r\n    color: #000;\r\n    border-radius: 0 !important;\n}\r\n", ""]);
+exports.push([module.i, "\n.router-link-exact-active {color: #4bd02a !important;\n}\r\n", ""]);
 
 // exports
 
@@ -37892,6 +37892,10 @@ exports.push([module.i, "\n.router-link-exact-active {\r\n    background: #cecec
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
 //
 //
 //
@@ -37919,28 +37923,39 @@ var render = function() {
     "div",
     [
       _c(
-        "ul",
-        { staticClass: "nav nav-pills nav-stacked" },
+        "nav",
+        { staticClass: "navbar navbar-expand-lg navbar-dark bg-dark" },
         [
-          _c(
-            "router-link",
-            { staticClass: "nav-link", attrs: { to: { name: "home" } } },
-            [_vm._v("Home")]
-          ),
-          _vm._v(" "),
-          _c(
-            "router-link",
-            { staticClass: "nav-link", attrs: { to: { name: "products" } } },
-            [_vm._v("Produtos")]
-          ),
-          _vm._v(" "),
-          _c(
-            "router-link",
-            { staticClass: "nav-link", attrs: { to: { name: "auth" } } },
-            [_vm._v("Login")]
-          )
-        ],
-        1
+          _c("div", { staticClass: "container" }, [
+            _c(
+              "ul",
+              { staticClass: "nav navbar-nav navbar-right" },
+              [
+                _c(
+                  "router-link",
+                  { staticClass: "nav-link", attrs: { to: { name: "home" } } },
+                  [_vm._v("Home")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "router-link",
+                  {
+                    staticClass: "nav-link",
+                    attrs: { to: { name: "products" } }
+                  },
+                  [_vm._v("Produtos")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "router-link",
+                  { staticClass: "nav-link", attrs: { to: { name: "auth" } } },
+                  [_vm._v("Login")]
+                )
+              ],
+              1
+            )
+          ])
+        ]
       ),
       _vm._v(" "),
       _c("router-view")
