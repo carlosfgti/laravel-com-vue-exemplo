@@ -58,7 +58,7 @@ export default {
             axios.delete(`${URL_BASE}${RESOURCE}${id}`)
                     .then(response => resolve())
                     .catch(error => reject(error.response.data))
-                    .finally(() => context.commit('LOADING', false))
+                    // .finally(() => context.commit('LOADING', false))
         })
     },
 }

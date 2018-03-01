@@ -37425,9 +37425,8 @@ var RESOURCE = 'products/';
                 return resolve();
             }).catch(function (error) {
                 return reject(error.response.data);
-            }).finally(function () {
-                return context.commit('LOADING', false);
             });
+            // .finally(() => context.commit('LOADING', false))
         });
     }
 });
