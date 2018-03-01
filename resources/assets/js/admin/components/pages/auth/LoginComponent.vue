@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="container">
         <h1>Login</h1>
 
         <div class="alert alert-warning" v-if="error" v-text="error"></div>
