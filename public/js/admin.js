@@ -38599,21 +38599,13 @@ var actions = {
 
 
 
-/* harmony default export */ __webpack_exports__["a"] = ([{ path: '/', component: __WEBPACK_IMPORTED_MODULE_0__components_pages_home_HomeComponent___default.a, name: 'home' }, { path: '/login', component: __WEBPACK_IMPORTED_MODULE_2__components_pages_auth_LoginComponent___default.a, name: 'auth' }, {
-    path: '/products',
+/* harmony default export */ __webpack_exports__["a"] = ([{ path: '/', component: __WEBPACK_IMPORTED_MODULE_0__components_pages_home_HomeComponent___default.a, name: 'home' }, { path: '/entrar', component: __WEBPACK_IMPORTED_MODULE_2__components_pages_auth_LoginComponent___default.a, name: 'auth' }, {
+    path: '/produtos',
     component: __WEBPACK_IMPORTED_MODULE_1__components_pages_products_ProductComponent___default.a,
     name: 'products',
-    meta: {
-        auth: true
-    }
-}, {
-    path: '/product/add',
-    component: __WEBPACK_IMPORTED_MODULE_3__components_pages_products_ProductAddComponent___default.a,
-    name: 'product.add',
-    meta: {
-        auth: true
-    }
-}, { path: '/product/:id/edit', component: __WEBPACK_IMPORTED_MODULE_4__components_pages_products_ProductEditComponent___default.a, name: 'product.edit', props: true }, { path: '*', component: __WEBPACK_IMPORTED_MODULE_5__components_pages_404_Page404___default.a }]);
+    meta: { auth: true },
+    children: [{ path: 'adicionar', component: __WEBPACK_IMPORTED_MODULE_3__components_pages_products_ProductAddComponent___default.a, name: 'product.add' }, { path: 'editar/:id', component: __WEBPACK_IMPORTED_MODULE_4__components_pages_products_ProductEditComponent___default.a, name: 'product.edit', props: true }]
+}, { path: '*', component: __WEBPACK_IMPORTED_MODULE_5__components_pages_404_Page404___default.a }]);
 
 /***/ })
 /******/ ]);

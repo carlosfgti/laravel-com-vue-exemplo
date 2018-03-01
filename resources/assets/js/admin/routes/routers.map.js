@@ -7,23 +7,16 @@ import Page404 from '../components/pages/404/Page404'
 
 export default [
     {path: '/', component: HomeComponent, name: 'home'},
-    {path: '/login', component: LoginComponent, name: 'auth'},
+    {path: '/entrar', component: LoginComponent, name: 'auth'},
     {
-        path: '/products',
+        path: '/produtos',
         component: ProductComponent, 
         name: 'products',
-        meta: {
-            auth: true
-        }
+        meta: {auth: true},
+        children: [
+            {path: 'adicionar', component: ProductAddComponent, name: 'product.add'},
+            {path: 'editar/:id', component: ProductEditComponent, name: 'product.edit', props: true},
+        ]
     },
-    {
-        path: '/product/add',
-        component: ProductAddComponent,
-        name: 'product.add',
-        meta: {
-            auth: true
-        }
-    },
-    {path: '/product/:id/edit', component: ProductEditComponent, name: 'product.edit', props: true},
     {path: '*', component: Page404},
 ]
