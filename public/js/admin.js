@@ -37624,7 +37624,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
-/* harmony default export */ __webpack_exports__["default"] = ({});
+/* harmony default export */ __webpack_exports__["default"] = ({
+  computed: {
+    me: function me() {
+      return this.$store.state.auth.me;
+    }
+  }
+});
 
 /***/ }),
 /* 80 */
@@ -37647,17 +37653,20 @@ var render = function() {
               [_vm._v("Home")]
             ),
             _vm._v(" "),
-            _c(
-              "router-link",
-              { staticClass: "nav-link", attrs: { to: { name: "products" } } },
-              [_vm._v("Produtos")]
-            ),
-            _vm._v(" "),
-            _c(
-              "router-link",
-              { staticClass: "nav-link", attrs: { to: { name: "auth" } } },
-              [_vm._v("Login")]
-            )
+            _vm.me.name
+              ? _c(
+                  "router-link",
+                  {
+                    staticClass: "nav-link",
+                    attrs: { to: { name: "products" } }
+                  },
+                  [_vm._v("Produtos")]
+                )
+              : _c(
+                  "router-link",
+                  { staticClass: "nav-link", attrs: { to: { name: "auth" } } },
+                  [_vm._v("Login")]
+                )
           ],
           1
         )

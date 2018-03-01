@@ -4,8 +4,8 @@
       <div class="container">
         <ul class="nav navbar-nav navbar-right">
           <router-link class="nav-link" :to="{name: 'home'}">Home</router-link>
-          <router-link class="nav-link" :to="{name: 'products'}">Produtos</router-link>
-          <router-link class="nav-link" :to="{name: 'auth'}">Login</router-link>
+          <router-link v-if="me.name"  class="nav-link" :to="{name: 'products'}">Produtos</router-link>
+          <router-link v-else class="nav-link" :to="{name: 'auth'}">Login</router-link>
         </ul>
       </div>
     </nav>
@@ -18,7 +18,11 @@
 
 <script>
 export default {
-  
+  computed: {
+    me () {
+      return this.$store.state.auth.me
+    }
+  }
 }
 </script>
 
