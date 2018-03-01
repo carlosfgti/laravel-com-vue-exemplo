@@ -1,3 +1,5 @@
+import { NAME_TOKEN } from './configs/configs'
+
 try {
     // Usa o bootstrap JS no projeto (Opcional)
     require('bootstrap');
@@ -23,3 +25,6 @@ if (token) {
 } else {
     console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
 }
+
+const tokenAcess = localStorage.getItem(NAME_TOKEN)
+window.axios.defaults.headers.common['Authorization'] = `Bearer ${tokenAcess}`;

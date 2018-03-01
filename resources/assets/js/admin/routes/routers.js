@@ -12,7 +12,7 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
     if (to.meta.auth && !store.state.auth.authenticated) {
-        router.push({name: 'auth'})
+        return router.push({name: 'auth'})
     }
 
     next()

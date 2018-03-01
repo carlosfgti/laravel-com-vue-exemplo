@@ -1,6 +1,5 @@
 import axios from 'axios'
-import { URL_BASE } from '../../../configs/configs'
-import { NAME_TOKEN } from '../../../configs/configs'
+import { URL_BASE, NAME_TOKEN } from '../../../configs/configs'
 
 const RESOURCE = 'auth/'
 
@@ -31,6 +30,8 @@ const actions = {
 
                             localStorage.setItem(NAME_TOKEN, response.data.token)
 
+                            axios.defaults.headers.common['Authorization'] = `Bearer ${response.data.token}`;
+
                             resolve()
                         })
                         .catch(error => {
@@ -45,7 +46,35 @@ const actions = {
     logout (context) {
         localStorage.removeItem(NAME_TOKEN)
         context.commit('AUTH_USER_LOGOUT')
-    }
+    },
+
+
+    checkLogin (context) {
+        const accessToken = localStorage.getItem(NAME_TOKEN)
+
+        return new Promise((resolve, reject) => {
+            if (!accessToken) {
+                context.commit('AUTH_USER_LOGOUT')
+
+                return reject()
+            }
+
+            return axios.get(`${URL_BASE}me`)
+                    .then(response => {
+                        const user = response.data.user
+
+                        context.commit('AUTH_USER_OK', user)
+
+                        return resolve()
+                    })
+                    .catch(error => {
+                        localStorage.removeItem(NAME_TOKEN)
+                        context.commit('AUTH_USER_LOGOUT')
+
+                        return reject(error.response.data)
+                    })
+        })
+    },
 }
 
 export default {

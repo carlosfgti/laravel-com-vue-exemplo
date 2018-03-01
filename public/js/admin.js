@@ -12291,9 +12291,20 @@ var app = new Vue({
     el: '#app'
 });
 
+__WEBPACK_IMPORTED_MODULE_2__vuex_store__["a" /* default */].dispatch('checkLogin').then(function () {
+    return __WEBPACK_IMPORTED_MODULE_1__routes_routers__["a" /* default */].push({ name: 'products' });
+}).catch(function (error) {
+    return __WEBPACK_IMPORTED_MODULE_1__routes_routers__["a" /* default */].push({ name: 'auth' });
+});
+
 /***/ }),
 /* 17 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__configs_configs__ = __webpack_require__(73);
+
 
 try {
     // Usa o bootstrap JS no projeto (Opcional)
@@ -12319,6 +12330,9 @@ if (token) {
 } else {
     console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
 }
+
+var tokenAcess = localStorage.getItem(__WEBPACK_IMPORTED_MODULE_0__configs_configs__["a" /* NAME_TOKEN */]);
+window.axios.defaults.headers.common['Authorization'] = 'Bearer ' + tokenAcess;
 
 /***/ }),
 /* 18 */
@@ -32692,7 +32706,7 @@ var router = new __WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]({
 
 router.beforeEach(function (to, from, next) {
     if (to.meta.auth && !__WEBPACK_IMPORTED_MODULE_3__vuex_store__["a" /* default */].state.auth.authenticated) {
-        router.push({ name: 'auth' });
+        return router.push({ name: 'auth' });
     }
 
     next();
@@ -38486,7 +38500,6 @@ if (false) {
 
 
 
-
 var RESOURCE = 'auth/';
 
 var state = {
@@ -38514,6 +38527,8 @@ var actions = {
 
                 localStorage.setItem(__WEBPACK_IMPORTED_MODULE_1__configs_configs__["a" /* NAME_TOKEN */], response.data.token);
 
+                __WEBPACK_IMPORTED_MODULE_0_axios___default.a.defaults.headers.common['Authorization'] = 'Bearer ' + response.data.token;
+
                 resolve();
             }).catch(function (error) {
                 console.log(error.response);
@@ -38527,6 +38542,30 @@ var actions = {
     logout: function logout(context) {
         localStorage.removeItem(__WEBPACK_IMPORTED_MODULE_1__configs_configs__["a" /* NAME_TOKEN */]);
         context.commit('AUTH_USER_LOGOUT');
+    },
+    checkLogin: function checkLogin(context) {
+        var accessToken = localStorage.getItem(__WEBPACK_IMPORTED_MODULE_1__configs_configs__["a" /* NAME_TOKEN */]);
+
+        return new Promise(function (resolve, reject) {
+            if (!accessToken) {
+                context.commit('AUTH_USER_LOGOUT');
+
+                return reject();
+            }
+
+            return __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get(__WEBPACK_IMPORTED_MODULE_1__configs_configs__["b" /* URL_BASE */] + 'me').then(function (response) {
+                var user = response.data.user;
+
+                context.commit('AUTH_USER_OK', user);
+
+                return resolve();
+            }).catch(function (error) {
+                localStorage.removeItem(__WEBPACK_IMPORTED_MODULE_1__configs_configs__["a" /* NAME_TOKEN */]);
+                context.commit('AUTH_USER_LOGOUT');
+
+                return reject(error.response.data);
+            });
+        });
     }
 };
 
