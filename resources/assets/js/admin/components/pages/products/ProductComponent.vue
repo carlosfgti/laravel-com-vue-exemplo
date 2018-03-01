@@ -40,13 +40,10 @@
             </tr>
         </table>
 
-        <div class="text-right" v-if="products.last_page > 1">
-            <ul class="pagination">
-                <li v-for="page in products.last_page" :key="page" :class="['page-item', {active: page == products.current_page}]">
-                    <a href="#" @click.prevent="loadProducts(page)" class="page-link">{{ page }}</a>
-                </li>
-            </ul>
-        </div>
+        <paginate
+            :pagination="products"
+            :offset="3"
+            @paginate="loadProducts"></paginate>
 
 
     </div>
@@ -54,6 +51,7 @@
 
 <script>
 import SearchProductComponent from './partials/SearchProductComponent'
+import PaginationComponent from '../../layouts/PaginationComponent'
 
 export default {
     name: 'product-component',
@@ -110,6 +108,7 @@ export default {
     },
     components: {
         search: SearchProductComponent,
+        paginate: PaginationComponent
     }
 }
 </script>
