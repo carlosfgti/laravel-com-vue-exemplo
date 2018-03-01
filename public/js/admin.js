@@ -37774,7 +37774,9 @@ var RESOURCE = 'products/';
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return URL_BASE; });
+/* unused harmony export NAME_TOKEN */
 var URL_BASE = '/api/v1/';
+var NAME_TOKEN = 'auth_token';
 
 /***/ }),
 /* 74 */
