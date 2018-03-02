@@ -12380,7 +12380,7 @@ var app = new Vue({
 });
 
 __WEBPACK_IMPORTED_MODULE_2__vuex_store__["a" /* default */].dispatch('checkLogin').then(function () {
-    return __WEBPACK_IMPORTED_MODULE_1__routes_routers__["a" /* default */].push({ name: 'products' });
+    return __WEBPACK_IMPORTED_MODULE_1__routes_routers__["a" /* default */].push({ name: 'dashboard' });
 }).catch(function (error) {
     return __WEBPACK_IMPORTED_MODULE_1__routes_routers__["a" /* default */].push({ name: 'auth' });
 });
@@ -32789,7 +32789,8 @@ if (typeof window !== 'undefined' && window.hasOwnProperty('Vue')) {
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]);
 
 var router = new __WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]({
-    routes: __WEBPACK_IMPORTED_MODULE_2__routers_map__["a" /* default */]
+    routes: __WEBPACK_IMPORTED_MODULE_2__routers_map__["a" /* default */],
+    mode: 'history'
 });
 
 router.beforeEach(function (to, from, next) {

@@ -23,5 +23,5 @@ const app = new Vue({
 
 
 store.dispatch('checkLogin')
-        .then(() => router.push({name: 'products'}))
+        .then(() => router.push({name: 'dashboard'}))
         .catch((error) => router.push({name: 'auth'}))
