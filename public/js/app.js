@@ -35995,7 +35995,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.$store.dispatch('login', this.formData).then(function () {
                 _this.$snotify.success('Sucesso ao logar', 'OK');
 
-                _this.$router.push({ name: 'products' });
+                _this.$router.push({ name: 'dashboard' });
             }).catch(function (response) {
                 console.log(response);
                 _this.error = response.error;

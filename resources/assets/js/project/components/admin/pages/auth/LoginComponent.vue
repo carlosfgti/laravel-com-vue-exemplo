@@ -57,7 +57,7 @@ export default {
                     .then(() => {
                         this.$snotify.success('Sucesso ao logar', 'OK')
 
-                        this.$router.push({name: 'products'})
+                        this.$router.push({name: 'dashboard'})
                     })
                     .catch((response) => {
                         console.log(response)
