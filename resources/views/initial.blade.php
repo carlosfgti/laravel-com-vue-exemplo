@@ -23,6 +23,7 @@
             <router-view></router-view>
         </div>
 
-    <script src="{{ url('js/admin.js') }}"></script>
+        <script src="{{ url('js/admin.js') }}"></script>
+        <script src="{{ url('js/site.js') }}"></script>
     </body>
 </html>
