@@ -3,11 +3,6 @@ import { Scatter } from 'vue-chartjs'
 
 export default {
   extends: Scatter,
-  data () {
-    return {
-      
-    }
-  },
   mounted () {
     this.renderChart({
       datasets: [{
@@ -16,42 +11,51 @@ export default {
         borderColor: '#f87979',
         backgroundColor: '#f87979',
         data: [{
-          x: 20,
-          y: 50
+          x: 0,
+          y: 0,
+        }, {
+          x: 10,
+          y: 10,
         }, {
           x: 20,
-          y: 20
-        }, {
-          x: 20,
-          y: 31
-        }, {
-          x: 21,
-          y: 20
+          y: 20,
         }, {
           x: 30,
-          y: 50
+          y: 30,
+        }, {
+          x: 40,
+          y: 40,
+        }, {
+          x: 50,
+          y: 50,
         }]
       },
       {
         label: 'Kotlin',
-        fill: false,
+        fill: true,
         borderColor: '#000',
         backgroundColor: '#000',
         data: [{
-          x: 20,
-          y: 40
+          x: 1,
+          y: 1,
         }, {
           x: 10,
-          y: 10
+          y: 20,
         }, {
-          x: 10,
-          y: 21
+          x: 15,
+          y: 30,
         }, {
-          x: 11,
-          y: 10
+          x: 25,
+          y: 30,
         }, {
-          x: 20,
-          y: 40
+          x: 35,
+          y: 50,
+        }, {
+          x: 45,
+          y: 20,
+        }, {
+          x: 50,
+          y: 10,
         }]
       }]
     }, {responsive: true, maintainAspectRatio: false})
