@@ -12379,11 +12379,11 @@ var app = new Vue({
     el: '#app'
 });
 
-/*
-store.dispatch('checkLogin')
-        .then(() => router.push({name: 'products'}))
-        .catch((error) => router.push({name: 'auth'}))
-*/
+__WEBPACK_IMPORTED_MODULE_2__vuex_store__["a" /* default */].dispatch('checkLogin').then(function () {
+    return __WEBPACK_IMPORTED_MODULE_1__routes_routers__["a" /* default */].push({ name: 'products' });
+}).catch(function (error) {
+    return __WEBPACK_IMPORTED_MODULE_1__routes_routers__["a" /* default */].push({ name: 'auth' });
+});
 
 /***/ }),
 /* 20 */
