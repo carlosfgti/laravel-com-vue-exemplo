@@ -1,3 +1,3 @@
 <?php
 
-$this->view('/', 'initial');
+$this->view('/', 'initial')->name('home');
