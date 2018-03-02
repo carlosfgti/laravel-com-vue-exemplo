@@ -9,9 +9,8 @@ import store from './vuex/store'
 Vue.use(Snotify, {toast: {showProgressBar: false}})
 
 /**
- * Cria os componentes
+ * Cria os componentes globais
  */
-Vue.component('admin-component', require('./components/AdminComponent.vue'))
 Vue.component('preloader-component', require('./components/layouts/PreloaderComponent'))
 
 

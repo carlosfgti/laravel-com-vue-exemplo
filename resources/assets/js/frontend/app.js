@@ -1,2 +1,0 @@
-window.Vue = require('vue')
-

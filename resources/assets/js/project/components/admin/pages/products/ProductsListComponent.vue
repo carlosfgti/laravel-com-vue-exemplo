@@ -51,7 +51,7 @@
 
 <script>
 import SearchProductComponent from './partials/SearchProductComponent'
-import PaginationComponent from '../../layouts/PaginationComponent'
+import PaginationComponent from '../../../layouts/PaginationComponent'
 
 export default {
     name: 'product-component',
