@@ -37,3 +37,16 @@ O usuário de teste é:
 email:    carlos@especializati.com.br
 password: 123456
 ```
+
+
+## Configuração - Frontend
+``` bash
+# Atualizar dependências
+npm install
+
+# Rodar em ambiente local localhost:8080
+npm run dev
+
+# Rodar em ambiente de produção
+npm run build
+```
