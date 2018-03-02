@@ -6,6 +6,7 @@
           <router-link class="nav-link" :to="{name: 'dashboard'}">Dashboard</router-link>
           <router-link v-if="me.name"  class="nav-link" :to="{name: 'products'}">Produtos</router-link>
           <router-link v-else class="nav-link" :to="{name: 'auth'}">Login</router-link>
+          <router-link class="nav-link" :to="{name: 'charts'}">Gráficos</router-link>
         </ul>
 
         <div v-if="me.name">

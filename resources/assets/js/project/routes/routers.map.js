@@ -1,5 +1,6 @@
 import AdminComponent from '../components/admin/AdminComponent'
 import DashboardComponent from '../components/admin/pages/dashboard/DashboardComponent'
+import ChartsComponent from '../components/admin/pages/charts/ChartsComponent'
 import ProductComponent from '../components/admin/pages/products/ProductComponent'
 import LoginComponent from '../components/admin/pages/auth/LoginComponent'
 import ProductAddComponent from '../components/admin/pages/products/ProductAddComponent'
@@ -42,6 +43,7 @@ export default [
                     {path: 'editar/:id', component: ProductEditComponent, name: 'product.edit', props: true},
                 ]
             },
+            {path: 'graficos', component: ChartsComponent, name: 'charts'},
         ]
     },
 
