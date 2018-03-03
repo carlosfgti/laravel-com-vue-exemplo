@@ -32,7 +32,7 @@ class ProductController extends Controller
     public function index(Request $request)
     {
         // Para testar o preloader no app client (opcional)
-        sleep(2);
+        // sleep(2);
         $product = $this->product->getResults($request->all(), $this->totalPage);
         
         return response()->json($product);
