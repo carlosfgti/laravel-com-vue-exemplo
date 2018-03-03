@@ -54456,6 +54456,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__charts_TestChartsThree___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__charts_TestChartsThree__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__charts_TestChartsFour__ = __webpack_require__(243);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__charts_TestChartsFour___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__charts_TestChartsFour__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__charts_TestChartsFive__ = __webpack_require__(299);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__charts_TestChartsFive___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__charts_TestChartsFive__);
 //
 //
 //
@@ -54488,6 +54490,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 
 
@@ -54499,7 +54510,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         'chart': __WEBPACK_IMPORTED_MODULE_0__charts_TestCharts___default.a,
         'chart-two': __WEBPACK_IMPORTED_MODULE_1__charts_TestChartsTwo___default.a,
         'chart-three': __WEBPACK_IMPORTED_MODULE_2__charts_TestChartsThree___default.a,
-        'chart-four': __WEBPACK_IMPORTED_MODULE_3__charts_TestChartsFour___default.a
+        'chart-four': __WEBPACK_IMPORTED_MODULE_3__charts_TestChartsFour___default.a,
+        'chart-five': __WEBPACK_IMPORTED_MODULE_4__charts_TestChartsFive___default.a
     }
 });
 
@@ -67587,6 +67599,12 @@ var render = function() {
     _c("hr"),
     _vm._v(" "),
     _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col" }, [_c("chart-five")], 1)
+    ]),
+    _vm._v(" "),
+    _c("hr"),
+    _vm._v(" "),
+    _c("div", { staticClass: "row" }, [
       _c("div", { staticClass: "col" }, [_c("chart")], 1),
       _vm._v(" "),
       _c("div", { staticClass: "col" }, [_c("chart-two")], 1)
@@ -70879,6 +70897,91 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 296 */,
+/* 297 */,
+/* 298 */,
+/* 299 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(3)
+/* script */
+var __vue_script__ = __webpack_require__(300)
+/* template */
+var __vue_template__ = null
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\project\\components\\admin\\pages\\charts\\TestChartsFive.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-ba3d3452", Component.options)
+  } else {
+    hotAPI.reload("data-v-ba3d3452", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 300 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_chartjs__ = __webpack_require__(13);
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  extends: __WEBPACK_IMPORTED_MODULE_0_vue_chartjs__["b" /* Line */],
+  data: function data() {
+    return {
+      datacollection: {
+        labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Julho'],
+        datasets: [{
+          label: 'Data One',
+          borderColor: '#f87979',
+          backgroundColor: 'transparent',
+          data: [40, 60, 10, 80, 90]
+        }, {
+          label: 'Data Two',
+          borderColor: '#000',
+          backgroundColor: 'transparent',
+          data: [10, 40, 60, 80, 85]
+        }]
+      }
+    };
+  },
+  mounted: function mounted() {
+    this.renderChart(this.datacollection, { responsive: true, maintainAspectRatio: false });
+  }
+});
 
 /***/ })
 /******/ ]);
