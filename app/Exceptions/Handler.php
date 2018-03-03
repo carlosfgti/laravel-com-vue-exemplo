@@ -52,6 +52,7 @@ class Handler extends ExceptionHandler
             if ($request->ajax())
                 return response()->json(['error' => 'not_found_uri'], 404);
 
+            // Redireciona caso a requisição não seja em AJAX (Evita problema de rotas no Vue SPA)
             return redirect()->route('home');
         }
         
