@@ -6,7 +6,7 @@
         </a>
 	    </li>
 
-	    <li v-for="(page, index) in pagesNumber" :class="['page-item', {'active': page == pagination.current_page}]" :key="index">
+	    <li v-if="pagination.last_page > 1" v-for="(page, index) in pagesNumber" :class="['page-item', {'active': page == pagination.current_page}]" :key="index">
         <a href="#" class="page-link" @click.prevent="changePage(page)">
           {{ page }}
         </a>
@@ -45,7 +45,7 @@
           from = 1;
         }
         // Define a última opção páginação
-        let to = from + (this.offset * 2);
+        let to = from + this.offset;
         if (to >= this.pagination.last_page) {
           to = this.pagination.last_page;
         }
