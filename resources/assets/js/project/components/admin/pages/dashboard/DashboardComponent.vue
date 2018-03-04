@@ -16,11 +16,6 @@
 </template>
 
 <script>
-// import TestCharts from '../charts/TestCharts'
-// import TestChartsTwo from '../charts/TestChartsTwo'
-// import TestChartsThree from '../charts/TestChartsThree'
-// import TestChartsFour from '../charts/TestChartsFour'
-// import TestChartsFive from '../charts/TestChartsFive'
 import TestChartsSix from '../charts/TestChartsSix'
 
 export default {
@@ -44,11 +39,6 @@ export default {
       }
     },
     components: {
-        // 'chart': TestCharts,
-        // 'chart-two': TestChartsTwo,
-        // 'chart-three': TestChartsThree,
-        // 'chart-four': TestChartsFour,
-        // 'chart-five': TestChartsFive,
         'chart-six': TestChartsSix,
     }
 }

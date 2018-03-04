@@ -54468,11 +54468,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
-// import TestCharts from '../charts/TestCharts'
-// import TestChartsTwo from '../charts/TestChartsTwo'
-// import TestChartsThree from '../charts/TestChartsThree'
-// import TestChartsFour from '../charts/TestChartsFour'
-// import TestChartsFive from '../charts/TestChartsFive'
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -54494,11 +54489,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
 
   components: {
-    // 'chart': TestCharts,
-    // 'chart-two': TestChartsTwo,
-    // 'chart-three': TestChartsThree,
-    // 'chart-four': TestChartsFour,
-    // 'chart-five': TestChartsFive,
     'chart-six': __WEBPACK_IMPORTED_MODULE_0__charts_TestChartsSix___default.a
   }
 });
