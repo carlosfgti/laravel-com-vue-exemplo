@@ -156,6 +156,12 @@ class ProductController extends Controller
     {
         if ( !$product = $this->product->find($id) )
            return response()->json(['error' => 'product_not_found'], 404);
+
+        // !importante: Deleta o arquivo de imagem que já existia
+        if ($product->image != null) {
+            if (Storage::exists("{$this->path}/{$product->image}"))
+                Storage::delete("{$this->path}/{$product->image}");
+        }
         
         if ( !$product->delete() )
             return response()->json(['error' => 'product_not_delete'], 500);
