@@ -3,6 +3,12 @@ import { URL_BASE } from '../../../configs/configs'
 
 const RESOURCE = 'products/'
 
+const CONFIG = {
+    headers: {
+        'content-type': 'multipart/form-data'
+    }
+}
+
 export default {
     loadProducts (context, params) {
         // Inicia Preloader
@@ -27,11 +33,11 @@ export default {
     },
 
 
-    addProduct (context, product) {
+    addProduct (context, formData) {
         context.commit('LOADING', true)
 
         return new Promise((resolve, reject) => {
-            axios.post(`${URL_BASE}${RESOURCE}`, product)
+            axios.post(`${URL_BASE}${RESOURCE}`, formData, CONFIG)
                     .then(response => resolve())
                     .catch(error => reject(error.response.data.errors))
                     .finally(() => context.commit('LOADING', false))
@@ -39,13 +45,15 @@ export default {
     },
 
 
-    editProduct (context, product) {
+    editProduct (context, formData) {
         context.commit('LOADING', true)
 
+        formData.append('_method', 'PATCH')
+
         return new Promise((resolve, reject) => {
-            axios.put(`${URL_BASE}${RESOURCE}${product.id}`, product)
+            axios.post(`${URL_BASE}${RESOURCE}${formData.get('id')}`, formData, CONFIG)
                     .then(response => resolve())
-                    .catch(error => reject(error.response.data))
+                    .catch(error => reject(error.response.data.errors))
                     .finally(() => context.commit('LOADING', false))
         })
     },

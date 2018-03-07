@@ -27,10 +27,7 @@ class StoreUpdateProductValidate extends FormRequest
         return [
             'name'          => "required|min:3|max:100|unique:products,name,{$this->id},id",
             'description'   => 'max:255',
-            'image'         => [
-                // 'required',
-                new FileCustonValidation(['png', 'jpeg', 'jpg'], $this->image)
-            ]
+            'image'         => 'image'
         ];
     }
 }

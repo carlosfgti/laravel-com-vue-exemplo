@@ -2,8 +2,20 @@
     <div>
       <form @submit.prevent="onSubmit">
         <div :class="['form-group', {'has-error': errors.image}]">
-            <img :src="imagePreview" class="img-responsive">
-            <input type="file" v-on:change="onFileChange" class="form-control">
+            <picture-input
+                ref="pictureInput"
+                @change="onChanged"
+                @remove="onRemoved"
+                :width="200"
+                :removable="true"
+                removeButtonClass="btn btn-danger"
+                :height="200"
+                accept="image/jpeg, image/png, image/gif"
+                buttonClass="btn btn-primary"
+                :customStrings="{
+                upload: '<h1>Upload</h1>',
+                drag: 'Clique ou arraste para aqui'}">
+            </picture-input>
             <div v-if="errors.image" class="help-block">
                 <p>{{ errors.image[0] }}</p>
             </div>
@@ -29,6 +41,8 @@
 </template>
 
 <script>
+import PictureInput from 'vue-picture-input'
+
 export default {
     props: {
         update: {
@@ -53,27 +67,33 @@ export default {
         return {
             errors: {},
             imagePreview: null,
+            upload: null,
         }
     },
     methods: {
-        onFileChange (e) {
-            let files = e.target.files || e.dataTransfer.files;
-            if (!files.length)
-                return;
-            this.createImage(files[0])
-        },
-        createImage (file) {
-            let reader = new FileReader()
-            reader.onload = (e) => {
-                this.product.image = e.target.result
-                this.imagePreview = e.target.result
+        onChanged() {
+            console.log("New picture loaded");
+            if (this.$refs.pictureInput.file) {
+                this.upload = this.$refs.pictureInput.file;
+            } else {
+                console.log("Old browser. No support for Filereader API");
             }
-            reader.readAsDataURL(file)
+        },
+        onRemoved() {
+            this.upload = null;
         },
         onSubmit () {
             const action = this.update ? 'editProduct' : 'addProduct'
 
-            return this.$store.dispatch(action, this.product)
+            const formData = new FormData()
+            if (this.upload != null)
+                formData.append('image', this.upload)
+            
+            formData.append('id', this.product.id)
+            formData.append('name', this.product.name)
+            formData.append('description', this.product.description)
+
+            return this.$store.dispatch(action, formData)
                         .then(() => {
                             this.$snotify.success('Sucesso ao salvar o registro')
 
@@ -85,6 +105,9 @@ export default {
                             this.errors = errors.hasOwnProperty('errors') ? errors.errors : errors
                         })
         }
+    },
+    components: {
+        PictureInput
     }
 }
 </script>

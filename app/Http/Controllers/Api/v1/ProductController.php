@@ -6,11 +6,13 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
 use App\Http\Requests\StoreUpdateProductValidate;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
     private $product;
     private $totalPage = 4;
+    private $path = 'products';
     
     /**
      * DI of \App\Models\Product
@@ -50,24 +52,22 @@ class ProductController extends Controller
         $data = $request->all();
 
         // Verifica se informou a imagem para upload
-        if ($request->has('image')) {
+        if ($request->hasFile('image') && $request->file('image')->isValid()) {
+            // Define o nome para a imagem
             $name = kebab_case($request->name);
     
             // Recupera a extensão do arquivo
-            $image = $request->get('image');
-            $extension = explode('/', explode(':', substr($image, 0, strpos($image, ';')))[1])[1];
-
-            // Define finalmente o nome + extensão
+            $extension = $request->image->extension();
+    
+            // Define finalmente o nome
             $nameFile = "{$name}.{$extension}";
 
-            // Atualiza no array $data para atualizar no banco
             $data['image'] = $nameFile;
-
+    
             // Faz o upload:
-            //$upload = $request->image->storeAs('products', $nameFile);
-            $upload = \Image::make($image)->save(public_path('storage/products/').$nameFile);
-            // Se tiver funcionado o arquivo foi armazenado em storage/app/public/products/nomedinamicoarquivo.extensao
-
+            $upload = $request->image->storeAs($this->path, $nameFile);
+            // Se tiver funcionado o arquivo foi armazenado em storage/app/public/categories/nomedinamicoarquivo.extensao
+    
             // Verifica se NÃO deu certo o upload
             if ( !$upload )
                 return response()->json(['error' => 'fail_upload'], 500);
@@ -109,23 +109,34 @@ class ProductController extends Controller
         if ( !$product = $this->product->find($id) )
            return response()->json(['error' => 'product_not_found'], 404);
 
-        // Faz o upload da nova imagem, caso informado
-        if ($request->has('image') && $product->image != $request->image) {
+        // Verifica se informou a imagem para upload
+        if ($request->hasFile('image') && $request->file('image')->isValid()) {
+            
+            if ($product->image != null) {
+                // !importante: Deleta o arquivo de imagem que já existia
+                if (Storage::exists("{$this->path}/{$product->image}"))
+                    Storage::delete("{$this->path}/{$product->image}");
+            }
+
+            // Define o nome para a imagem
+            $name = kebab_case($request->name);
+        
             // Recupera a extensão do arquivo
-            $image = $request->get('image');
-            $extension = explode('/', explode(':', substr($image, 0, strpos($image, ';')))[1])[1];
-
+            $extension = $request->image->extension();
+    
             // Define finalmente o nome
-            $nameFile = "{$product->name}.{$extension}";
+            $product->image = "{$name}.{$extension}";
 
-            $data['image'] = $nameFile;
-
-            // Faz o upload: //$upload = $request->image->storeAs('products', $nameFile);
-            $upload = \Image::make($image)->save(public_path('storage/products/').$nameFile);
-
+            $data['image'] = $product->image;
+    
+            // Faz o upload:
+            $upload = $request->image->storeAs($this->path, $product->image);
+    
             // Verifica se NÃO deu certo o upload
             if ( !$upload )
                 return response()->json(['error' => 'fail_upload'], 500);
+        } else {
+            unset($data['image']);
         }
         
         if ( !$product->update($data) )
