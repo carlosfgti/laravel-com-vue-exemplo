@@ -22,7 +22,7 @@ class Product extends Model
     {
         // Se não existir filtro (name, description ou filter) retorna todos os resultados, paginados
     	if (!isset($data['name']) && !isset($data['description']) && !isset($data['filter']))
-    		return $this->paginate($totalPage);
+    		return $this->orderBy('id', 'DESC')->paginate($totalPage);
 
         // Traz os resultados filtrados
     	return $this->where(function ($query) use ($data) {
