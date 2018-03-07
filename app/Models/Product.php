@@ -43,6 +43,8 @@ class Product extends Model
                                 ->orWhere('description', 'LIKE', "%{$filter}%");
                     }
 
-    			})->paginate($totalPage);// ->toSql();
+                })
+                ->orderBy('id', 'DESC')
+                ->paginate($totalPage);// ->toSql();
     }
 }
