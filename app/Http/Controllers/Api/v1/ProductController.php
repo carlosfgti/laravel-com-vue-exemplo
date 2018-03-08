@@ -166,6 +166,6 @@ class ProductController extends Controller
         if ( !$product->delete() )
             return response()->json(['error' => 'product_not_delete'], 500);
         
-        return response()->json($product);
+        return response()->json($product, 204);
     }
 }
