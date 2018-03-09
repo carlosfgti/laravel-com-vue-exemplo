@@ -68,4 +68,25 @@ class ApiLoginController extends Controller
         // the token is valid and we have found the user via the sub claim
         return response()->json(compact('user'));
     }
+
+
+
+    /**
+     * Atualiza o token
+     *
+     * @return JSON token
+     */
+    public function refreshToken()
+    {
+        if( !$token = JWTAuth::getToken(); )
+            return response()->json(['error' => 'token_not_send'], 401);
+        
+        try {
+            $token = JWTAuth::refresh($token);
+        } catch (TokenInvalidException $e) {
+            return response()->json(['error' => 'token_invalid'], 401);
+        }
+        
+        return response()->json(compact('token'));
+    }
 }
