@@ -78,7 +78,7 @@ class ApiLoginController extends Controller
      */
     public function refreshToken()
     {
-        if( !$token = JWTAuth::getToken(); )
+        if( !$token = JWTAuth::getToken() )
             return response()->json(['error' => 'token_not_send'], 401);
         
         try {
