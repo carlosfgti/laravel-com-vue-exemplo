@@ -25,7 +25,7 @@ cp .env.example .env
 php artisan key:generate
 
 # Configuração do JWT
-php artisan jwt:generate
+php artisan jwt:secret
 
 # Criar migrations (tabelas e Seeders)
 php artisan migrate --seed
