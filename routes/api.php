@@ -5,7 +5,7 @@ $this->group(['prefix' => 'v1'], function() {
 
     // Rota de autenticação
     $this->post('auth', 'Auth\ApiLoginController@authenticate');
-$this->apiResource('teste', 'Api\v1\ProductController');
+
     // Atualização do TOKEN
     $this->post('auth-refresh', 'Auth\ApiLoginController@refreshToken');
 
