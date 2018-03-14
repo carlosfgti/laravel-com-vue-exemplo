@@ -38,7 +38,6 @@ email:    carlos@especializati.com.br
 password: 123456
 ```
 
-
 ## Configuração - Frontend
 ``` bash
 # Atualizar dependências
@@ -50,3 +49,6 @@ npm run dev
 # Rodar em ambiente de produção
 npm run build
 ```
+
+## Deseja Aprender Laravel com Vue JS?
+Recomendo que se matricule no meu treinamento de Laravel com Vue JS ([Saiba Mais](https://www.especializati.com.br/curso-laravel-vue-js)). 
