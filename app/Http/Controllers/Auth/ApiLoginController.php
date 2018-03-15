@@ -9,6 +9,10 @@ use App\Http\Controllers\Controller;
 
 class ApiLoginController extends Controller
 {
+
+    /**
+     * Filtros de autenticação para os métodos
+     */
     public function __construct()
     {
         $this->middleware('auth:api', [
