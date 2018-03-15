@@ -10,7 +10,7 @@ $this->group(['prefix' => 'v1'], function() {
     $this->post('auth-refresh', 'Auth\ApiLoginController@refreshToken');
 
     // Rotas autenticadas por token JWT
-    $this->group(['middleware' => 'jwt.auth'], function () {
+    $this->group(['middleware' => 'auth:api'], function () {
         // Retorna o usuário autenticado pelo token
         $this->get('me', 'Auth\ApiLoginController@getAuthenticatedUser');
 

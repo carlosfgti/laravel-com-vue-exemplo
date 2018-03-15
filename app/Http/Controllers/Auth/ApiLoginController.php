@@ -9,6 +9,13 @@ use App\Http\Controllers\Controller;
 
 class ApiLoginController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:api', [
+            'except' => ['authenticate'],
+        ]);
+    }
+
 
     /**
      * Autenticação do usuário
