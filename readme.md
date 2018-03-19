@@ -29,6 +29,9 @@ php artisan jwt:secret
 
 # Criar migrations (tabelas e Seeders)
 php artisan migrate --seed
+
+# Criar link simbólico storage/app/public para public/storage/
+php artisan storage:link
 ```
 
 ## Login
