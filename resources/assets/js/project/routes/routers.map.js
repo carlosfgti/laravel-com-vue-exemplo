@@ -1,11 +1,8 @@
 import AdminComponent from '../components/admin/AdminComponent'
 import DashboardComponent from '../components/admin/pages/dashboard/DashboardComponent'
 import ChartsComponent from '../components/admin/pages/charts/ChartsComponent'
-import ProductComponent from '../components/admin/pages/products/ProductComponent'
 import LoginComponent from '../components/admin/pages/auth/LoginComponent'
-import ProductAddComponent from '../components/admin/pages/products/ProductAddComponent'
-import ProductEditComponent from '../components/admin/pages/products/ProductEditComponent'
-import ProductsListComponent from '../components/admin/pages/products/ProductsListComponent'
+import Products from '../components/admin/pages/products_modal/Products'
 import Page404 from '../components/frontend/pages/404/Page404'
 import SiteComponent from '../components/frontend/SiteComponent'
 import HomePageComponent from '../components/frontend/pages/home/HomePageComponent'
@@ -34,15 +31,7 @@ export default [
         meta: {auth: true},
         children: [
             {path: '', component: DashboardComponent, name: 'dashboard'},
-            {
-                path: 'produtos',
-                component: ProductComponent,
-                children: [
-                    {path: '', component: ProductsListComponent, name: 'products'},
-                    {path: 'adicionar', component: ProductAddComponent, name: 'product.add'},
-                    {path: 'editar/:id', component: ProductEditComponent, name: 'product.edit', props: true},
-                ]
-            },
+            {path: 'produtos', component: Products, name: 'products'},
             {path: 'graficos', component: ChartsComponent, name: 'charts'},
         ]
     },
