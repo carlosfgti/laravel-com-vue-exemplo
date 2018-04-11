@@ -68633,7 +68633,7 @@ exports = module.exports = __webpack_require__(7)(false);
 
 
 // module
-exports.push([module.i, "\n.img-list[data-v-046eebc5]{max-width: 50px;\n}\n.options[data-v-046eebc5]{margin: 20px 0;\n}\n.v--modal-overlay[data-v-046eebc5]{padding: 10px;\n}\r\n", ""]);
+exports.push([module.i, "\n.img-list[data-v-046eebc5]{max-width: 50px;\n}\n.options[data-v-046eebc5]{margin: 20px 0;\n}\r\n", ""]);
 
 // exports
 
@@ -68752,15 +68752,13 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
             this.$store.dispatch('loadProduct', id).then(function (response) {
                 _this.product = response;
-
                 _this.showModal = true;
             }).catch(function (error) {
-                return _this.$snotify.error('Erro ao carregar produto', 'Erro');
+                return _this.$snotify.error('Erro ao carregar produto');
             });
         },
         searchProduct: function searchProduct(search) {
             this.search = search;
-
             this.loadProducts(1);
         },
         confirmDelete: function confirmDelete(product) {
@@ -69300,7 +69298,7 @@ exports = module.exports = __webpack_require__(7)(false);
 
 
 // module
-exports.push([module.i, "\nform{\r\n    margin: 10px 0;\n}\n.img-responsive{max-width: 60px;\n}\n.padding-default{padding: 10px;\n}\r\n", ""]);
+exports.push([module.i, "\nform{\r\n    margin: 10px 0;\n}\n.img-responsive{max-width: 60px;\n}\r\n", ""]);
 
 // exports
 
@@ -69411,15 +69409,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             formData.append('description', this.product.description);
 
             return this.$store.dispatch(action, formData).then(function () {
-                _this.$swal({
-                    title: 'Sucesso',
-                    text: 'Operação realizada com sucesso!',
-                    icon: 'success'
-                });
+                _this.$swal('Sucesso', 'Operação realizada com sucesso!', 'success');
 
                 _this.$emit('success');
             }).catch(function (errors) {
-                _this.$snotify.error('Algo errado...', 'Erro');
+                _this.$snotify.error('Algo errado...');
 
                 _this.errors = errors.hasOwnProperty('errors') ? errors.errors : errors;
             });
@@ -70322,7 +70316,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "padding-default" }, [
+  return _c("div", [
     _c(
       "form",
       {

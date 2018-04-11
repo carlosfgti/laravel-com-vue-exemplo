@@ -1,5 +1,5 @@
 <template>
-    <div class="padding-default">
+    <div>
       <form @submit.prevent="onSubmit">
         <div :class="['form-group', {'has-error': errors.image}]">
             <picture-input
@@ -95,16 +95,12 @@ export default {
 
             return this.$store.dispatch(action, formData)
                         .then(() => {
-                            this.$swal({
-                                title: 'Sucesso',
-                                text: 'Operação realizada com sucesso!',
-                                icon: 'success',
-                            })
+                            this.$swal('Sucesso', 'Operação realizada com sucesso!', 'success')
 
                             this.$emit('success')
                         })
                         .catch(errors => {
-                            this.$snotify.error('Algo errado...', 'Erro')
+                            this.$snotify.error('Algo errado...')
 
                             this.errors = errors.hasOwnProperty('errors') ? errors.errors : errors
                         })
@@ -121,5 +117,4 @@ form{
     margin: 10px 0;
 }
 .img-responsive{max-width: 60px;}
-.padding-default{padding: 10px;}
 </style>

@@ -94,14 +94,12 @@ export default {
             this.$store.dispatch('loadProduct', id)
                         .then(response => {
                             this.product = response
-
                             this.showModal = true
                         })
-                        .catch(error => this.$snotify.error('Erro ao carregar produto', 'Erro'))
+                        .catch(error => this.$snotify.error('Erro ao carregar produto'))
         },
         searchProduct (search) {
             this.search = search
-
             this.loadProducts(1)
         },
         confirmDelete (product) {
@@ -150,5 +148,4 @@ export default {
 <style scoped>
 .img-list{max-width: 50px;}
 .options{margin: 20px 0;}
-.v--modal-overlay{padding: 10px;}
 </style>
