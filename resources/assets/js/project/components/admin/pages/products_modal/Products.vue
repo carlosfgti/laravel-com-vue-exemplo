@@ -4,7 +4,7 @@
 
         <div class="row options">
             <div class="col">
-                <a ref="modal" @click.prevent="show" class="btn btn-success">
+                <a ref="modal" @click.prevent="create" class="btn btn-success">
                     Adicionar
                 </a>
             </div>
@@ -72,7 +72,12 @@ export default {
             search: null,
             productId: null,
             showModal: false,
-            product: {},
+            product: {
+                id: '',
+                name: '',
+                description: '',
+                image: '',
+            },
         }
     },
     computed: {
@@ -123,16 +128,25 @@ export default {
                                 this.loadProducts(1)
                             })
         },
-        show () {
+        create () {
+            this.resetProduct()
             this.showModal = true
         },
         hide () {
             this.showModal = false
         },
         reset () {
-            this.product = {}
+            this.resetProduct()
             this.hide()
             this.loadProducts()
+        },
+        resetProduct () {
+            this.product = {
+                id: '',
+                name: '',
+                description: '',
+                image: '',
+            }
         }
     },
     components: {

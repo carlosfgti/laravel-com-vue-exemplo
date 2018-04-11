@@ -68728,7 +68728,12 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
             search: null,
             productId: null,
             showModal: false,
-            product: {}
+            product: {
+                id: '',
+                name: '',
+                description: '',
+                image: ''
+            }
         };
     },
 
@@ -68786,16 +68791,25 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
                 _this3.loadProducts(1);
             });
         },
-        show: function show() {
+        create: function create() {
+            this.resetProduct();
             this.showModal = true;
         },
         hide: function hide() {
             this.showModal = false;
         },
         reset: function reset() {
-            this.product = {};
+            this.resetProduct();
             this.hide();
             this.loadProducts();
+        },
+        resetProduct: function resetProduct() {
+            this.product = {
+                id: '',
+                name: '',
+                description: '',
+                image: ''
+            };
         }
     },
     components: {
@@ -70470,7 +70484,7 @@ var render = function() {
               on: {
                 click: function($event) {
                   $event.preventDefault()
-                  return _vm.show($event)
+                  return _vm.create($event)
                 }
               }
             },
