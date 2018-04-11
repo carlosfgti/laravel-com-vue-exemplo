@@ -95,9 +95,13 @@ export default {
 
             return this.$store.dispatch(action, formData)
                         .then(() => {
-                            this.$snotify.success('Sucesso ao salvar o registro')
+                            this.$swal({
+                                title: 'Sucesso',
+                                text: 'Operação realizada com sucesso!',
+                                icon: 'success',
+                            })
 
-                            this.$router.push({name: 'products'})
+                            this.$emit('success')
                         })
                         .catch(errors => {
                             this.$snotify.error('Algo errado...', 'Erro')

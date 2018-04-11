@@ -68709,6 +68709,8 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 //
 //
+//
+//
 
 
 
@@ -68725,7 +68727,8 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
         return {
             search: null,
             productId: null,
-            showModal: false
+            showModal: false,
+            product: {}
         };
     },
 
@@ -68744,13 +68747,24 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
         loadProducts: function loadProducts(page) {
             this.$store.dispatch('loadProducts', _extends({}, this.params, { page: page }));
         },
+        edit: function edit(id) {
+            var _this = this;
+
+            this.$store.dispatch('loadProduct', id).then(function (response) {
+                _this.product = response;
+
+                _this.showModal = true;
+            }).catch(function (error) {
+                return _this.$snotify.error('Erro ao carregar produto', 'Erro');
+            });
+        },
         searchProduct: function searchProduct(search) {
             this.search = search;
 
             this.loadProducts(1);
         },
         confirmDelete: function confirmDelete(product) {
-            var _this = this;
+            var _this2 = this;
 
             this.productId = product.id;
 
@@ -68762,16 +68776,16 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
                 buttons: [{ text: 'Não', action: function action() {
                         return console.log('Clicked: No');
                     } }, { text: 'Sim', action: function action() {
-                        return _this.destroy();
+                        return _this2.destroy();
                     }, bold: false }]
             });
         },
         destroy: function destroy() {
-            var _this2 = this;
+            var _this3 = this;
 
             this.$store.dispatch('destroyProduct', this.productId).then(function () {
-                _this2.productId = null;
-                _this2.loadProducts(1);
+                _this3.productId = null;
+                _this3.loadProducts(1);
             });
         },
         show: function show() {
@@ -68780,7 +68794,11 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
         hide: function hide() {
             this.showModal = false;
         },
-        teste: function teste() {}
+        reset: function reset() {
+            this.product = {};
+            this.hide();
+            this.loadProducts();
+        }
     },
     components: {
         search: __WEBPACK_IMPORTED_MODULE_1__partials_SearchProductComponent___default.a,
@@ -69393,9 +69411,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             formData.append('description', this.product.description);
 
             return this.$store.dispatch(action, formData).then(function () {
-                _this.$snotify.success('Sucesso ao salvar o registro');
+                _this.$swal({
+                    title: 'Sucesso',
+                    text: 'Operação realizada com sucesso!',
+                    icon: 'success'
+                });
 
-                _this.$router.push({ name: 'products' });
+                _this.$emit('success');
             }).catch(function (errors) {
                 _this.$snotify.error('Algo errado...', 'Erro');
 
@@ -70507,9 +70529,20 @@ var render = function() {
               _c("td", { domProps: { textContent: _vm._s(product.name) } }),
               _vm._v(" "),
               _c("td", [
-                _c("a", { staticClass: "btn btn-info", attrs: { href: "#" } }, [
-                  _vm._v("\n                    Editar\n                ")
-                ]),
+                _c(
+                  "a",
+                  {
+                    staticClass: "btn btn-info",
+                    attrs: { href: "#" },
+                    on: {
+                      click: function($event) {
+                        $event.preventDefault()
+                        _vm.edit(product.id)
+                      }
+                    }
+                  },
+                  [_vm._v("\n                    Editar\n                ")]
+                ),
                 _vm._v(" "),
                 _c(
                   "a",
@@ -70538,7 +70571,12 @@ var render = function() {
           attrs: { show: _vm.showModal, animation: "zoom", heigth: "500" },
           on: { hide: _vm.hide }
         },
-        [_c("form-product")],
+        [
+          _c("form-product", {
+            attrs: { product: _vm.product },
+            on: { success: _vm.reset }
+          })
+        ],
         1
       ),
       _vm._v(" "),

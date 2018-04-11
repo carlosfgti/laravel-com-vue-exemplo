@@ -32,7 +32,7 @@
                 </td>
                 <td v-text="product.name"></td>
                 <td>
-                    <a href="#" class="btn btn-info">
+                    <a href="#" @click.prevent="edit(product.id)" class="btn btn-info">
                         Editar
                     </a>
                     <a href="#" @click.prevent="confirmDelete(product)" class="btn btn-danger">Deletar</a>
@@ -41,7 +41,9 @@
         </table>
 
         <vodal :show="showModal" animation="zoom" @hide="hide" heigth=500>
-            <form-product>
+            <form-product
+                :product="product"
+                @success="reset">
             </form-product>
         </vodal>
 
@@ -70,6 +72,7 @@ export default {
             search: null,
             productId: null,
             showModal: false,
+            product: {},
         }
     },
     computed: {
@@ -86,6 +89,15 @@ export default {
     methods: {
         loadProducts (page) {
             this.$store.dispatch('loadProducts', {...this.params, page})
+        },
+        edit (id) {
+            this.$store.dispatch('loadProduct', id)
+                        .then(response => {
+                            this.product = response
+
+                            this.showModal = true
+                        })
+                        .catch(error => this.$snotify.error('Erro ao carregar produto', 'Erro'))
         },
         searchProduct (search) {
             this.search = search
@@ -119,8 +131,10 @@ export default {
         hide () {
             this.showModal = false
         },
-        teste () {
-            
+        reset () {
+            this.product = {}
+            this.hide()
+            this.loadProducts()
         }
     },
     components: {
