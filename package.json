@@ -9,20 +9,25 @@
         "prod": "npm run production",
         "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
     },
-    "devDependencies": {
+    "dependencies": {
         "axios": "^0.17",
-        "bootstrap": "^4.0.0",
+        "bootstrap": "^4.1.0",
+        "browser-sync": "^2.23.6",
+        "browser-sync-webpack-plugin": "^2.2.2",
         "chart.js": "^2.7.2",
-        "cross-env": "^5.1",
+        "cross-env": "^5.1.4",
         "jquery": "^3.2",
-        "laravel-mix": "^2.0",
+        "laravel-mix": "^2.1.11",
         "lodash": "^4.17.4",
-        "popper.js": "^1.12",
-        "vue": "^2.5.7",
-        "vue-chartjs": "^3.2.1",
-        "vue-picture-input": "^2.1.1",
+        "modal-vue": "0.0.3",
+        "popper.js": "^1.14.3",
+        "vodal": "^2.3.3",
+        "vue": "^2.5.16",
+        "vue-chartjs": "^3.3.1",
+        "vue-picture-input": "^2.1.5",
         "vue-router": "^3.0.1",
         "vue-snotify": "^3.0.4",
+        "vue-swal": "^0.1.0",
         "vuex": "^3.0.1"
     }
 }

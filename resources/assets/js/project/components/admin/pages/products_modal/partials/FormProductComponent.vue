@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="padding-default">
       <form @submit.prevent="onSubmit">
         <div :class="['form-group', {'has-error': errors.image}]">
             <picture-input
@@ -117,4 +117,5 @@ form{
     margin: 10px 0;
 }
 .img-responsive{max-width: 60px;}
+.padding-default{padding: 10px;}
 </style>

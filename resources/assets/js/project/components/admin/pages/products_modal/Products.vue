@@ -4,7 +4,7 @@
 
         <div class="row options">
             <div class="col">
-                <a href="#" class="btn btn-success">
+                <a ref="modal" @click.prevent="show" class="btn btn-success">
                     Adicionar
                 </a>
             </div>
@@ -40,18 +40,25 @@
             </tr>
         </table>
 
+        <vodal :show="showModal" animation="zoom" @hide="hide" heigth=500>
+            <form-product>
+            </form-product>
+        </vodal>
+
         <paginate
             :pagination="products"
             :offset="3"
             @paginate="loadProducts"></paginate>
 
-
     </div>
 </template>
 
 <script>
+import Vodal from 'vodal'
+
 import SearchProductComponent from './partials/SearchProductComponent'
 import PaginationComponent from '../../../layouts/PaginationComponent'
+import FormProductComponent from './partials/FormProductComponent'
 
 export default {
     name: 'product-component',
@@ -62,6 +69,7 @@ export default {
         return {
             search: null,
             productId: null,
+            showModal: false,
         }
     },
     computed: {
@@ -104,11 +112,22 @@ export default {
                                 this.productId = null
                                 this.loadProducts(1)
                             })
+        },
+        show () {
+            this.showModal = true
+        },
+        hide () {
+            this.showModal = false
+        },
+        teste () {
+            
         }
     },
     components: {
         search: SearchProductComponent,
-        paginate: PaginationComponent
+        paginate: PaginationComponent,
+        formProduct: FormProductComponent,
+        Vodal,
     }
 }
 </script>
@@ -117,4 +136,5 @@ export default {
 <style scoped>
 .img-list{max-width: 50px;}
 .options{margin: 20px 0;}
+.v--modal-overlay{padding: 10px;}
 </style>
