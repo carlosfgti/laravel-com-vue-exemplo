@@ -40,7 +40,7 @@
             </tr>
         </table>
 
-        <vodal :show="showModal" animation="zoom" @hide="hide" heigth=500>
+        <vodal :show="showModal" animation="zoom" @hide="hide" :width="600" :height="500">
             <form-product
                 :product="product"
                 @success="reset">

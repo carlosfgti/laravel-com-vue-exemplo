@@ -70576,7 +70576,12 @@ var render = function() {
       _c(
         "vodal",
         {
-          attrs: { show: _vm.showModal, animation: "zoom", heigth: "500" },
+          attrs: {
+            show: _vm.showModal,
+            animation: "zoom",
+            width: 600,
+            height: 500
+          },
           on: { hide: _vm.hide }
         },
         [
