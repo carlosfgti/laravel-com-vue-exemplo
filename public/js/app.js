@@ -68633,7 +68633,7 @@ exports = module.exports = __webpack_require__(7)(false);
 
 
 // module
-exports.push([module.i, "\n.img-list[data-v-046eebc5]{max-width: 50px;\n}\n.options[data-v-046eebc5]{margin: 20px 0;\n}\r\n", ""]);
+exports.push([module.i, "\n.img-list[data-v-046eebc5]{max-width: 50px;\n}\n.options[data-v-046eebc5]{margin: 20px 0;\n}\n.vodal-dialog[data-v-046eebc5]{height: auto; max-width: 90%;\n}\r\n", ""]);
 
 // exports
 
@@ -68711,6 +68711,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 //
 //
+//
 
 
 
@@ -68721,7 +68722,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: 'product-component',
     created: function created() {
-        this.loadProducts();
+        this.loadProducts(1);
     },
     data: function data() {
         return {
@@ -68733,7 +68734,8 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
                 name: '',
                 description: '',
                 image: ''
-            }
+            },
+            update: false
         };
     },
 
@@ -68758,6 +68760,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
             this.$store.dispatch('loadProduct', id).then(function (response) {
                 _this.product = response;
                 _this.showModal = true;
+                _this.update = true;
             }).catch(function (error) {
                 return _this.$snotify.error('Erro ao carregar produto');
             });
@@ -68792,24 +68795,26 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
             });
         },
         create: function create() {
-            this.resetProduct();
+            this.reset();
             this.showModal = true;
         },
         hide: function hide() {
             this.showModal = false;
         },
-        reset: function reset() {
-            this.resetProduct();
+        success: function success() {
+            this.reset();
+            this.loadProducts(1);
             this.hide();
-            this.loadProducts();
         },
-        resetProduct: function resetProduct() {
+        reset: function reset() {
             this.product = {
                 id: '',
                 name: '',
                 description: '',
                 image: ''
             };
+
+            this.update = false;
         }
     },
     components: {
@@ -69365,12 +69370,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+    mounted: function mounted() {
+        this.reset();
+    },
+
     props: {
         update: {
             require: false,
@@ -69379,7 +69386,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         product: {
             require: false,
-            type: Array | Object,
+            type: Object,
             default: function _default() {
                 return {
                     id: '',
@@ -69399,22 +69406,32 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
 
     methods: {
-        onChanged: function onChanged() {
-            console.log("New picture loaded");
-            if (this.$refs.pictureInput.file) {
-                this.upload = this.$refs.pictureInput.file;
-            } else {
-                console.log("Old browser. No support for Filereader API");
-            }
+        onFileChange: function onFileChange(e) {
+            var files = e.target.files || e.dataTransfer.files;
+            if (!files.length) return;
+
+            this.upload = files[0];
+            this.createImage(files[0]);
         },
-        onRemoved: function onRemoved() {
-            this.upload = null;
+        createImage: function createImage(file) {
+            var image = new Image();
+            var reader = new FileReader();
+            var vm = this;
+
+            reader.onload = function (e) {
+                vm.imagePreview = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        },
+        removeImage: function removeImage() {
+            this.imagePreview = null, this.upload = null;
         },
         onSubmit: function onSubmit() {
             var _this = this;
 
             var action = this.update ? 'editProduct' : 'addProduct';
 
+            console.log(this.upload);
             var formData = new FormData();
             if (this.upload != null) formData.append('image', this.upload);
 
@@ -69426,11 +69443,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 _this.$swal('Sucesso', 'Operação realizada com sucesso!', 'success');
 
                 _this.$emit('success');
+
+                _this.errors = {};
             }).catch(function (errors) {
                 _this.$snotify.error('Algo errado...');
 
                 _this.errors = errors.hasOwnProperty('errors') ? errors.errors : errors;
             });
+        },
+        reset: function reset() {
+            console.log('Form reset');
+            this.errors = {};
         }
     },
     components: {
@@ -70346,30 +70369,42 @@ var render = function() {
           "div",
           { class: ["form-group", { "has-error": _vm.errors.image }] },
           [
-            _c("picture-input", {
-              ref: "pictureInput",
-              attrs: {
-                width: 200,
-                removable: true,
-                removeButtonClass: "btn btn-danger",
-                height: 200,
-                accept: "image/jpeg, image/png, image/gif",
-                buttonClass: "btn btn-primary",
-                customStrings: {
-                  upload: "<h1>Upload</h1>",
-                  drag: "Clique ou arraste para aqui"
-                }
-              },
-              on: { change: _vm.onChanged, remove: _vm.onRemoved }
-            }),
+            !_vm.imagePreview
+              ? _c("div", [
+                  _c("input", {
+                    ref: "picture",
+                    staticClass: "form-control",
+                    attrs: { type: "file", accept: "image/*" },
+                    on: { change: _vm.onFileChange }
+                  })
+                ])
+              : _c("div", { staticClass: "text-center" }, [
+                  _c("img", {
+                    staticClass: "img-responsive",
+                    attrs: { src: _vm.imagePreview }
+                  }),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-danger",
+                      on: {
+                        click: function($event) {
+                          $event.preventDefault()
+                          return _vm.removeImage($event)
+                        }
+                      }
+                    },
+                    [_vm._v("Remover Imagem")]
+                  )
+                ]),
             _vm._v(" "),
             _vm.errors.image
               ? _c("div", { staticClass: "help-block" }, [
                   _c("p", [_vm._v(_vm._s(_vm.errors.image[0]))])
                 ])
               : _vm._e()
-          ],
-          1
+          ]
         ),
         _vm._v(" "),
         _c("div", { class: ["form-group", { "has-error": _vm.errors.name }] }, [
@@ -70586,8 +70621,8 @@ var render = function() {
         },
         [
           _c("form-product", {
-            attrs: { product: _vm.product },
-            on: { success: _vm.reset }
+            attrs: { product: _vm.product, update: _vm.update },
+            on: { success: _vm.success }
           })
         ],
         1

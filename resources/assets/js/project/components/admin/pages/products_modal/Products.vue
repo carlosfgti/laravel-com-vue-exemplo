@@ -43,7 +43,8 @@
         <vodal :show="showModal" animation="zoom" @hide="hide" :width="600" :height="500">
             <form-product
                 :product="product"
-                @success="reset">
+                :update="update"
+                @success="success">
             </form-product>
         </vodal>
 
@@ -65,7 +66,7 @@ import FormProductComponent from './partials/FormProductComponent'
 export default {
     name: 'product-component',
     created () {
-      this.loadProducts()
+      this.loadProducts(1)
     },
     data () {
         return {
@@ -78,6 +79,7 @@ export default {
                 description: '',
                 image: '',
             },
+            update: false,
         }
     },
     computed: {
@@ -100,6 +102,7 @@ export default {
                         .then(response => {
                             this.product = response
                             this.showModal = true
+                            this.update = true
                         })
                         .catch(error => this.$snotify.error('Erro ao carregar produto'))
         },
@@ -129,24 +132,26 @@ export default {
                             })
         },
         create () {
-            this.resetProduct()
+            this.reset()
             this.showModal = true
         },
         hide () {
             this.showModal = false
         },
-        reset () {
-            this.resetProduct()
+        success () {
+            this.reset()
+            this.loadProducts(1)
             this.hide()
-            this.loadProducts()
         },
-        resetProduct () {
+        reset () {
             this.product = {
                 id: '',
                 name: '',
                 description: '',
                 image: '',
             }
+
+            this.update = false
         }
     },
     components: {
@@ -162,4 +167,5 @@ export default {
 <style scoped>
 .img-list{max-width: 50px;}
 .options{margin: 20px 0;}
+.vodal-dialog{height: auto; max-width: 90%;}
 </style>

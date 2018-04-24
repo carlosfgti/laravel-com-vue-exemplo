@@ -2,20 +2,18 @@
     <div>
       <form @submit.prevent="onSubmit">
         <div :class="['form-group', {'has-error': errors.image}]">
-            <picture-input
-                ref="pictureInput"
-                @change="onChanged"
-                @remove="onRemoved"
-                :width="200"
-                :removable="true"
-                removeButtonClass="btn btn-danger"
-                :height="200"
-                accept="image/jpeg, image/png, image/gif"
-                buttonClass="btn btn-primary"
-                :customStrings="{
-                upload: '<h1>Upload</h1>',
-                drag: 'Clique ou arraste para aqui'}">
-            </picture-input>
+            <div v-if="!imagePreview">
+                <input
+                    type="file"
+                    ref="picture"
+                    class="form-control"
+                    @change="onFileChange"
+                    accept="image/*">
+            </div>
+            <div v-else class="text-center">
+                <img :src="imagePreview" class="img-responsive">
+                <button @click.prevent="removeImage" class="btn btn-danger">Remover Imagem</button>
+            </div>
             <div v-if="errors.image" class="help-block">
                 <p>{{ errors.image[0] }}</p>
             </div>
@@ -44,6 +42,9 @@
 import PictureInput from 'vue-picture-input'
 
 export default {
+    mounted () {
+        this.reset()
+    },
     props: {
         update: {
             require: false,
@@ -52,7 +53,7 @@ export default {
         },
         product: {
             require: false,
-            type: Array|Object,
+            type: Object,
             default: () => {
                 return {
                     id: '',
@@ -71,20 +72,32 @@ export default {
         }
     },
     methods: {
-        onChanged() {
-            console.log("New picture loaded");
-            if (this.$refs.pictureInput.file) {
-                this.upload = this.$refs.pictureInput.file;
-            } else {
-                console.log("Old browser. No support for Filereader API");
-            }
+        onFileChange (e) {
+            let files = e.target.files || e.dataTransfer.files;
+            if (!files.length)
+                return
+
+            this.upload = files[0]
+            this.createImage(files[0])
         },
-        onRemoved() {
-            this.upload = null;
+        createImage (file) {
+            let image = new Image()
+            let reader = new FileReader()
+            let vm = this
+
+            reader.onload = (e) => {
+                vm.imagePreview = e.target.result
+            }
+            reader.readAsDataURL(file)
+        },
+        removeImage () {
+            this.imagePreview = null,
+            this.upload = null
         },
         onSubmit () {
             const action = this.update ? 'editProduct' : 'addProduct'
-
+            
+            console.log(this.upload)
             const formData = new FormData()
             if (this.upload != null)
                 formData.append('image', this.upload)
@@ -98,12 +111,18 @@ export default {
                             this.$swal('Sucesso', 'Operação realizada com sucesso!', 'success')
 
                             this.$emit('success')
+
+                            this.errors = {}
                         })
                         .catch(errors => {
                             this.$snotify.error('Algo errado...')
 
                             this.errors = errors.hasOwnProperty('errors') ? errors.errors : errors
                         })
+        },
+        reset () {
+            console.log('Form reset')
+            this.errors = {}
         }
     },
     components: {
