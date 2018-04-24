@@ -53,15 +53,7 @@ export default {
         },
         product: {
             require: false,
-            type: Object,
-            default: () => {
-                return {
-                    id: '',
-                    name: '',
-                    description: '',
-                    image: '',
-                }
-            }
+            type: Object
         }
     },
     data () {
@@ -96,8 +88,7 @@ export default {
         },
         onSubmit () {
             const action = this.update ? 'editProduct' : 'addProduct'
-            
-            console.log(this.upload)
+
             const formData = new FormData()
             if (this.upload != null)
                 formData.append('image', this.upload)
@@ -113,6 +104,8 @@ export default {
                             this.$emit('success')
 
                             this.errors = {}
+                            this.upload = null
+                            this.imagePreview = null
                         })
                         .catch(errors => {
                             this.$snotify.error('Algo errado...')

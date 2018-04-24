@@ -69386,15 +69386,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         product: {
             require: false,
-            type: Object,
-            default: function _default() {
-                return {
-                    id: '',
-                    name: '',
-                    description: '',
-                    image: ''
-                };
-            }
+            type: Object
         }
     },
     data: function data() {
@@ -69431,7 +69423,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             var action = this.update ? 'editProduct' : 'addProduct';
 
-            console.log(this.upload);
             var formData = new FormData();
             if (this.upload != null) formData.append('image', this.upload);
 
@@ -69445,6 +69436,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 _this.$emit('success');
 
                 _this.errors = {};
+                _this.upload = null;
+                _this.imagePreview = null;
             }).catch(function (errors) {
                 _this.$snotify.error('Algo errado...');
 
