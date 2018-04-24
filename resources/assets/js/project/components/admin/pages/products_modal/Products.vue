@@ -66,7 +66,7 @@ import FormProductComponent from './partials/FormProductComponent'
 export default {
     name: 'product-component',
     created () {
-      this.loadProducts(1)
+      this.loadProducts()
     },
     data () {
         return {
@@ -94,10 +94,12 @@ export default {
       }
     },
     methods: {
-        loadProducts (page) {
+        loadProducts (page = 1) {
             this.$store.dispatch('loadProducts', {...this.params, page})
         },
         edit (id) {
+            this.reset()
+
             this.$store.dispatch('loadProduct', id)
                         .then(response => {
                             this.product = response
@@ -108,7 +110,7 @@ export default {
         },
         searchProduct (search) {
             this.search = search
-            this.loadProducts(1)
+            this.loadProducts()
         },
         confirmDelete (product) {
             this.productId = product.id
@@ -128,11 +130,12 @@ export default {
             this.$store.dispatch('destroyProduct', this.productId)
                             .then(() => {
                                 this.productId = null
-                                this.loadProducts(1)
+                                this.loadProducts()
                             })
         },
         create () {
             this.reset()
+            this.update = false
             this.showModal = true
         },
         hide () {
@@ -140,7 +143,7 @@ export default {
         },
         success () {
             this.reset()
-            this.loadProducts(1)
+            this.loadProducts()
             this.hide()
         },
         reset () {
@@ -150,8 +153,6 @@ export default {
                 description: '',
                 image: '',
             }
-
-            this.update = false
         }
     },
     components: {

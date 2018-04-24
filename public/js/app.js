@@ -68722,7 +68722,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: 'product-component',
     created: function created() {
-        this.loadProducts(1);
+        this.loadProducts();
     },
     data: function data() {
         return {
@@ -68751,11 +68751,15 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
         }
     },
     methods: {
-        loadProducts: function loadProducts(page) {
+        loadProducts: function loadProducts() {
+            var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
+
             this.$store.dispatch('loadProducts', _extends({}, this.params, { page: page }));
         },
         edit: function edit(id) {
             var _this = this;
+
+            this.reset();
 
             this.$store.dispatch('loadProduct', id).then(function (response) {
                 _this.product = response;
@@ -68767,7 +68771,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
         },
         searchProduct: function searchProduct(search) {
             this.search = search;
-            this.loadProducts(1);
+            this.loadProducts();
         },
         confirmDelete: function confirmDelete(product) {
             var _this2 = this;
@@ -68791,11 +68795,12 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
             this.$store.dispatch('destroyProduct', this.productId).then(function () {
                 _this3.productId = null;
-                _this3.loadProducts(1);
+                _this3.loadProducts();
             });
         },
         create: function create() {
             this.reset();
+            this.update = false;
             this.showModal = true;
         },
         hide: function hide() {
@@ -68803,7 +68808,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
         },
         success: function success() {
             this.reset();
-            this.loadProducts(1);
+            this.loadProducts();
             this.hide();
         },
         reset: function reset() {
@@ -68813,8 +68818,6 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
                 description: '',
                 image: ''
             };
-
-            this.update = false;
         }
     },
     components: {
