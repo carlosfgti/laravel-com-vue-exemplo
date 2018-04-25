@@ -73,12 +73,9 @@ export default {
             this.createImage(files[0])
         },
         createImage (file) {
-            let image = new Image()
             let reader = new FileReader()
-            let vm = this
-
             reader.onload = (e) => {
-                vm.imagePreview = e.target.result
+                this.imagePreview = e.target.result
             }
             reader.readAsDataURL(file)
         },
